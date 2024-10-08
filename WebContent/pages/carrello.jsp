@@ -4,13 +4,9 @@
 <html lang="it">
 <head>
 		<%@ include file="/partials/head.jsp" %>		
-		<title>Mobilux</title>		
+		<title>Carrello</title>		
 	</head>
 <body>
 	<%@ include file="/partials/header.jsp" %>
-	<div>
-	
-	</div>
-	<%@ include file="/partials/footer.jsp" %>	
 </body>
 </html>
