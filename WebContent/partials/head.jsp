@@ -4,7 +4,7 @@
 	<meta name="keywords" content="">
 	<meta name="author" content="">				
 	
-	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/styles/index.css">
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/styles/index.css?v=1" type="text/css">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
 	
 	<script src="<%=request.getContextPath()%>/js/jquery-3.3.1.js"></script>

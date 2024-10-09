@@ -7,50 +7,20 @@
 <title>Login</title>
 </head>
 <body>
-	<header>
-		<nav class="navbar">
-			<div class="left-block">
-				<a href="#"><img class="logo" src="${pageContext.request.contextPath}/images/logo.png" alt="Logo"></a>
-			</div>
-			<div class="right-block">
-				<form>
-					<input id="searchForm">
-					<button type="submit">Search</button>
-				</form>
-				<a href="pages/login.jsp">Login</a> 
-				<a href="${pageContext.request.contextPath}/pages/carrello.jsp">Cart</a>
-			</div>
-		</nav>
-	</header>
-	<div></div>
-	<footer>
-		<div class="col-container">
-			<div class="col">
-				<h2>Per i nostri clienti</h2>
-				<p>Contattaci</p>
-				<p>Pagamenti e Sicurezza</p>
-				<p>Consegna e installazione</p>
-			</div>
+	
+		<%@ include file="/partials/header.jsp"%>
+	
+	<div>
+		<form action="/submit-login" method="POST">
+			<label for="username">Username:</label> <input type="text"
+				id="username" name="username" required><br> <br> <label
+				for="password">Password:</label> <input type="password"
+				id="password" name="password" required><br> <br> <input
+				type="submit" value="Login"> o <a href="${pageContext.request.contextPath}/pages/registrazione.jsp">Registrati</a>
+		</form>
+	</div>
 
-			<div class="col">
-				<h2>L'azienda</h2>
-				<p>Chi siamo</p>
-				<p>Ci troviamo in:</p>
-				<p>Via San Benedetto 14 Comiziano (NA) 80030</p>
-
-			</div>
-
-			<div class="col">
-				<h2>Social</h2>
-				<p>Trovi il nostro store anche su:</p>
-				<p>
-					<i class="fab fa-facebook"></i>
-				</p>
-				<p>
-					<i class="fab fa-instagram"></i>
-				</p>
-			</div>
-		</div>
-	</footer>
+		<%@ include file="/partials/footer.jsp"%>
+	
 </body>
 </html>

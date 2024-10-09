@@ -1,15 +1,18 @@
-<nav class="navbar">
-	<div class="left-block">
-		<a href="#"><img class="logo" src="images/logo.png" alt="picture"></a>
-	</div>
-	<div class="right-block">
-		<a href="#">Shop</a>
-		<a href="#">Login</a>
-		<form>
-			<input id="searchForm">
-			<button type="submit">Search</button>
-		</form>
-		<a href="#">Cart</a>
-	    
-	</div>
-</nav>
+
+<header>
+	<nav class="navbar">
+		<div class="left-block">
+			<a href="${pageContext.request.contextPath}/pages/index.jsp"> <img
+				class="logo"
+				src="${pageContext.request.contextPath}/images/logo.png" alt="Logo"></a>
+		</div>
+		<div class="right-block">
+			<form>
+				<input id="searchForm">
+				<button type="submit">Cerca</button>
+			</form>
+			<a href="${pageContext.request.contextPath}/pages/login.jsp">Login</a>
+			<a href="${pageContext.request.contextPath}/pages/carrello.jsp">Carrello</a>
+		</div>
+	</nav>
+</header>
