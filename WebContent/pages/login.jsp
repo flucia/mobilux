@@ -4,7 +4,7 @@
 <html lang="it">
 <head>
 <%@ include file="/partials/head.jsp"%>
-<title>Carrello</title>
+<title>Login</title>
 </head>
 <body>
 	<header>
@@ -17,8 +17,8 @@
 					<input id="searchForm">
 					<button type="submit">Search</button>
 				</form>
-				<a href="${pageContext.request.contextPath}/pages/login.jsp">Login</a>
-				<a href="./pages/carrello.jsp">Cart</a>
+				<a href="pages/login.jsp">Login</a> 
+				<a href="${pageContext.request.contextPath}/pages/carrello.jsp">Cart</a>
 			</div>
 		</nav>
 	</header>
