@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public class ConnessioneDb {
     public static void main(String[] args) {
-        String url = "jdbc:mysql://localhost:3306/Mobilux"; // Sostituisci con il tuo database
-        String user = "root"; // Sostituisci con il tuo utente
-        String password = "00000000"; // Sostituisci con il tuo utente
+        String url = "jdbc:mysql://localhost:3306/Mobilux";
+        String user = "root";
+        String password = "00000000";
         
 
         Connection conn = null;
