@@ -1,29 +1,38 @@
 package model;
 
 public class Cliente {
-
+	    
+	    private String cf;
 	    private String nome;
 	    private String cognome;
-	    private String sesso;
-	    private String dataDiNascita;
 	    private String email;
 	    private String username;
-	    private String passw;
+	    private String password;
 	    private String ruolo;
+	    private String indirizzo;
 	    private String cellulare;
+	    
 
-	    public Cliente (String nome, String cognome, String sesso, String dataDiNascita, String email, String username, String passw, String ruolo, String cellulare) {
-	        this.nome=nome;
+	    public Cliente (String cf,String nome, String cognome,String email, String username, String password, String ruolo, String indirizzo, String cellulare) {
+	        this.cf = cf;
+	    	this.nome=nome;
 	        this.cognome=cognome;
-	        this.sesso=sesso;
-	        this.dataDiNascita=dataDiNascita;
 	        this.email=email;
 	        this.username=username;
-	        this.passw=passw;
+	        this.password=password;
 	        this.ruolo=ruolo;
 	        this.cellulare=cellulare;
+	        this.indirizzo=indirizzo;
 	    }
 
+	    public String getCodiceFiscale() {
+	        return cf;
+	    }
+
+	    public void setCodiceFiscale(String cf) {
+	        this.cf = cf;
+	    }
+	    
 	    public String getNome() {
 	        return nome;
 	    }
@@ -38,22 +47,6 @@ public class Cliente {
 
 	    public void setCognome(String cognome) {
 	        this.cognome = cognome;
-	    }
-
-	    public String getSesso() {
-	        return sesso;
-	    }
-
-	    public void setSesso(String sesso) {
-	        this.sesso = sesso;
-	    }
-
-	    public String getDataDiNascita() {
-	        return dataDiNascita;
-	    }
-
-	    public void setDataDiNascita(String dataDiNascita) {
-	        this.dataDiNascita = dataDiNascita;
 	    }
 
 	    public String getEmail() {
@@ -71,13 +64,21 @@ public class Cliente {
 	    public void setUsername(String username) {
 	        this.username = username;
 	    }
+	    
+	    public String getIndirizzo() {
+	    	return indirizzo;
+	    }
+	    
+	    public void setIndirizzo(String indirizzo) {
+	    	this.indirizzo = indirizzo;
+	    }
 
-	    public String getPassw() {
-	        return passw;
+	    public String getPassword() {
+	        return password;
 	    }
 
 	    public void setPassw(String passw) {
-	        this.passw = passw;
+	        this.password = passw;
 	    }
 
 	    public String getRuolo() {
@@ -88,26 +89,26 @@ public class Cliente {
 	        this.ruolo = ruolo;
 	    }
 
-	    public String getTelefono() {
+	    public String getCellulare() {
 	        return cellulare;
 	    }
 
-	    public void setTelefono(String telefono) {
-	        this.cellulare = telefono;
+	    public void setCellulare(String cellulare) {
+	        this.cellulare = cellulare;
 	    }
 
 	    @Override
 	    public String toString() {
 	        return "Cliente{" +
+	        		", nome='" + cf + '\'' +
 	                ", nome='" + nome + '\'' +
 	                ", cognome='" + cognome + '\'' +
-	                ", sesso='" + sesso + '\'' +
-	                ", dataDiNascita=" + dataDiNascita +
 	                ", email='" + email + '\'' +
 	                ", username='" + username + '\'' +
-	                ", passw='" + passw + '\'' +
+	                ", passw='" + password + '\'' +
 	                ", ruolo='" + ruolo + '\'' +
 	                ", cellulare='" + cellulare + '\'' +
+	                ", indirizzo='" + indirizzo + '\'' +
 	                '}';
 	    }
 	}

@@ -14,18 +14,27 @@
 			<a href="${pageContext.request.contextPath}/pages/login.jsp">Login</a>
 			<a href="${pageContext.request.contextPath}/pages/carrello.jsp">Carrello</a>
 		</div>
-		<div>
+	</nav>
+	<div class="sub-navbar">
 		<div>
 			<a href="${pageContext.request.contextPath}/pages/cucina.jsp">Cucina</a>
-			</div>
-			<div>
+		</div>
+		<div>
 			<a href="${pageContext.request.contextPath}/pages/salaDaPranzo.jsp">Sala
-				da pranzo</a></div><div> <a
-				href="${pageContext.request.contextPath}/pages/cameraDaLetto.jsp">Camera
-				da letto</a></div> <div><a
-				href="${pageContext.request.contextPath}/pages/ufficio.jsp">Ufficio</a></div>
-			<div><a href="${pageContext.request.contextPath}/pages/bagno.jsp">Bagno</a></div>
-			<div><a href="${pageContext.request.contextPath}/pages/esterni.jsp">Esterni</a></div>
-			</div>
-	</nav>
+				da pranzo</a>
+		</div>
+		<div>
+			<a href="${pageContext.request.contextPath}/pages/cameraDaLetto.jsp">Camera
+				da letto</a>
+		</div>
+		<div>
+			<a href="${pageContext.request.contextPath}/pages/ufficio.jsp">Ufficio</a>
+		</div>
+		<div>
+			<a href="${pageContext.request.contextPath}/pages/bagno.jsp">Bagno</a>
+		</div>
+		<div>
+			<a href="${pageContext.request.contextPath}/pages/esterni.jsp">Esterni</a>
+		</div>
+	</div>
 </header>

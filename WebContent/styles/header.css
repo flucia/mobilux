@@ -3,8 +3,9 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding-left:24px;
-	padding-right:24px;
+	padding-left:3%;
+	padding-right:3%;
+	border-bottom: 1px solid #E4E4E4;
 	
 	.right-block{
 		display: flex;
@@ -15,4 +16,15 @@
 .logo {
 	height: auto;
 	width: 20%;
+}
+
+.sub-navbar{
+	display:flex;
+	justify-content: space-between;
+	width: 100%;
+	margin-top: 8px;
+	margin-bottom: 8px;
+	margin-left: 5%;
+	margin-right: 5%;
+	height: 30px;
 }

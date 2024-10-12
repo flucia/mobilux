@@ -7,20 +7,25 @@
 <title>Login</title>
 </head>
 <body>
-	
-		<%@ include file="/partials/header.jsp"%>
-	
-	<div>
-		<form action="/submit-login" method="POST">
+
+	<%@ include file="/partials/header.jsp"%>
+
+	<div class="w-full flex justify-content-center login-body">
+		<form action="/submit-login" method="POST"
+			class="flex flex-col align-items-center gap-y-2">
 			<label for="username">Username:</label> <input type="text"
-				id="username" name="username" required><br> <br> <label
+				id="username" name="username" required> 
+			<label
 				for="password">Password:</label> <input type="password"
-				id="password" name="password" required><br> <br> <input
-				type="submit" value="Login"> o <a href="${pageContext.request.contextPath}/pages/registrazione.jsp">Registrati</a>
+				id="password" name="password" required>
+			<div>
+				<input type="submit" value="Login"> o <a
+					href="${pageContext.request.contextPath}/pages/registrazione.jsp">Registrati</a>
+			</div>
 		</form>
 	</div>
 
-		<%@ include file="/partials/footer.jsp"%>
-	
+	<%@ include file="/partials/footer.jsp"%>
+
 </body>
 </html>

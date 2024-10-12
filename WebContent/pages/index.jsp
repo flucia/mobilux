@@ -9,7 +9,7 @@
 </head>
 <body>
 	<%@ include file="/partials/header.jsp"%>
-	<div class="container">
+	<div class="container gap-x-2">
 		<div class="slideshow-container">
 			<div class="mySlides fade">
 				<img src="${pageContext.request.contextPath}/images/homepage.jpg"
@@ -71,7 +71,7 @@
 			}
 			slides[slideIndex - 1].style.display = "block";
 			dots[slideIndex - 1].className += " active";
-			setTimeout(showSlides, 2000);
+			setTimeout(showSlides, 3000);
 		}
 	</script>
 

@@ -4,28 +4,32 @@
 
 @import url('utils.css');
 
+@import url('login.css');
+
 body {
 	margin: 0px;
 }
+
 .container {
 	display: flex;
-	
-	
 }
+
 .slideshow-container {
 	max-width: 1000px;
 	position: relative;
-	margin: auto;
+	margin-right: 20px;
 }
+
 .mySlides {
 	display: none;
+	max-height: 250px;
 }
 
 .dot {
-	height: 15px;
-	width: 15px;
+	height: 0px;
+	width: 0px;
 	margin: 0 2px;
-	background-color: #bbb;
+	background-color: transparent;
 	border-radius: 50%;
 	display: inline-block;
 	transition: background-color 0.6s ease;
