@@ -11,7 +11,13 @@
 		<%@ include file="/partials/header.jsp"%>
 		
 	
-	<div></div>
+	<div>
+	<div>
+	<img src="${pageContext.request.contextPath}/images/tavolo.jpg" alt="img-prodotto" style= width:10%>
+	<button type="submit" name="idProdotto">Aggiungi al carrello</button>
+	<button type="submit">Quantità</button>
+	</div>
+	</div>
 	
 		<%@ include file="/partials/footer.jsp"%>
 	

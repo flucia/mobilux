@@ -11,7 +11,7 @@
 	<%@ include file="/partials/header.jsp"%>
 
 	<div class="w-full flex justify-content-center login-body">
-		<form action="/submit-login" method="POST"
+		<form action="../Login" method="post"
 			class="flex flex-col align-items-center gap-y-2">
 			<label for="username">Username:</label> <input type="text"
 				id="username" name="username" required> 

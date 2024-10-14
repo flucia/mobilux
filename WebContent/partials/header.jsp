@@ -1,4 +1,4 @@
-
+<%@ page import="model.Cliente"%>
 <header>
 	<nav class="navbar">
 		<div class="left-block">
@@ -11,7 +11,20 @@
 				<input id="searchForm">
 				<button type="submit">Cerca</button>
 			</form>
+			<%
+			Cliente cliente = (Cliente) session.getAttribute("cliente");
+			%>
+			<%
+			if (cliente != null) {
+			%>
+			<a href="${pageContext.request.contextPath}/Logout">Logout</a>
+			<%
+			} else {
+			%>
 			<a href="${pageContext.request.contextPath}/pages/login.jsp">Login</a>
+			<%
+			}
+			%>
 			<a href="${pageContext.request.contextPath}/pages/carrello.jsp">Carrello</a>
 		</div>
 	</nav>
