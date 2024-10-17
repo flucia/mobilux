@@ -1,4 +1,4 @@
-package model;
+package model.bean;
 
 public class Cliente {
 	    
@@ -12,7 +12,7 @@ public class Cliente {
 	    private String indirizzo;
 	    private String cellulare;
 	    
-
+	    public Cliente() {}
 	    public Cliente (String cf,String nome, String cognome,String email, String username, String password, String ruolo, String indirizzo, String cellulare) {
 	        this.cf = cf;
 	    	this.nome=nome;

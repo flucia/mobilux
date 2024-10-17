@@ -1,7 +1,16 @@
-footer{
+footer {
+	position: fixed;
 	width: 100%;
+	bottom: 0;
+	background-color: #F5F1E6;
 }
 
-.footer-text{
+.footer-content {
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+.footer-text {
 	font-size: 14px;
+	color: #4B4E5A;
 }

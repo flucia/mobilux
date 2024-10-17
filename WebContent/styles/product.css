@@ -1,0 +1,43 @@
+.prodotto-body {
+	display: grid;
+	grid-template-columns: auto auto auto;
+	column-gap: 16px;
+	row-gap: 5%;
+	margin-left: 5%;
+	margin-right: 5%;
+	margin-bottom: 3%;
+	margin-top: 3%;
+}
+
+.prodotto {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.prodotto-img {
+	width: 100%;
+	max-width: 300px;
+	height: auto;
+}
+
+@media ( max-width : 767px) {
+	.prodotto-body {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* For screens between 768px and 992px (2 columns) */
+@media ( min-width : 768px) and (max-width: 991px) {
+	.prodotto-body {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+/* For screens ≥992px (3 columns) */
+@media ( min-width : 992px) {
+	.prodotto-body {
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+}

@@ -6,12 +6,20 @@
 
 @import url('login.css');
 
+@import url('product.css');
+
 body {
 	margin: 0px;
+	font-family: "Playfair Display", serif;
 }
 
 .container {
 	display: flex;
+}
+
+a{
+	text-decoration: none;
+	color: #D78258;
 }
 
 .slideshow-container {

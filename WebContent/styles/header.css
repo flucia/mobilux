@@ -6,6 +6,7 @@
 	padding-left:3%;
 	padding-right:3%;
 	border-bottom: 1px solid #E4E4E4;
+	background-color: #F5F1E6;
 	
 	.right-block{
 		display: flex;
@@ -21,10 +22,12 @@
 .sub-navbar{
 	display:flex;
 	justify-content: space-between;
+	color: #D78258;
+	align-items: center;
 	width: 100%;
 	margin-top: 8px;
 	margin-bottom: 8px;
-	margin-left: 5%;
-	margin-right: 5%;
 	height: 30px;
+	color: #4B4E5A;
+	
 }

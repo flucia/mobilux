@@ -1,4 +1,4 @@
-<%@ page import="model.Cliente"%>
+<%@ page import="model.bean.Cliente"%>
 <header>
 	<nav class="navbar">
 		<div class="left-block">
@@ -28,7 +28,7 @@
 			<a href="${pageContext.request.contextPath}/pages/carrello.jsp">Carrello</a>
 		</div>
 	</nav>
-	<div class="sub-navbar">
+	<div class="sub-navbar container">
 		<div>
 			<a href="${pageContext.request.contextPath}/pages/cucina.jsp">Cucina</a>
 		</div>
