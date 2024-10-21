@@ -66,6 +66,27 @@ public class CarrelloDAO {
 		}
 		return carrelli;
 	}
+
+	public void removeItem(String idUtente,String idProdotto) throws SQLException{
+		String query = "DELETE FROM Carrello WHERE idUtente= ? AND idProdotto= ?";
+		try (PreparedStatement ps = connection.prepareStatement(query)) {
+			ps.setString(1, idUtente);
+			ps.setString(2, idProdotto);
+			ps.executeUpdate();
+		}
+
+	}
+	
+	public void updateQuantitaCarrello(Carrello carrello) throws SQLException {
+		String query = "UPDATE Carrello SET quantita = ? WHERE idUtente=? AND idProdotto= ?";
+		try (PreparedStatement ps = connection.prepareStatement(query)) {
+			ps.setInt(1,carrello.getQuantita());
+			ps.setString(2, carrello.getIdUtente());
+			ps.setString(3, carrello.getIdProdotto());
+			
+			ps.executeUpdate();
+		}
+	}
 }
 
 

@@ -21,18 +21,18 @@
 	String home = context;
 	%>
 	<%
-			if (user != null) {
-				ArrayList<Carrello> carrelli = carrelloDao.selectAllCarrello(user.getCodiceFiscale());
-				if (carrelli != null && !carrelli.isEmpty()) {
-					for (Carrello c : carrelli) {
-				Prodotto prodotto = c.getProdotto();
-				int quantita = c.getQuantita();
-				if (prodotto != null && quantita > 0) {
-					String nome = prodotto.getNome();
-					String immagine = prodotto.getImmagine();
-					double prezzo = prodotto.getPrezzo();
-					double totale = prezzo * quantita;
-			%>
+	if (user != null) {
+		ArrayList<Carrello> carrelli = carrelloDao.selectAllCarrello(user.getCodiceFiscale());
+		if (carrelli != null && !carrelli.isEmpty()) {
+			for (Carrello c : carrelli) {
+		Prodotto prodotto = c.getProdotto();
+		int quantita = c.getQuantita();
+		if (prodotto != null && quantita > 0) {
+			String nome = prodotto.getNome();
+			String immagine = prodotto.getImmagine();
+			double prezzo = prodotto.getPrezzo();
+			double totale = prezzo * quantita;
+	%>
 	<div>
 		<table>
 			<tr>
@@ -45,18 +45,28 @@
 				<th>Totale carrello</th>
 			</tr>
 			<tr>
-				<td><input type="hidden" name="idProdotto"
-					value="<%=prodotto.getIdProdotto()%>">
-					<button type="submit">Rimuovi</button></td>
+				<td>
+					<form action="../RimuoviItemCarrello" method=post>
+						<input type="hidden" name="idProdotto"
+							value="<%=prodotto.getIdProdotto()%>">
+						<button type="submit">Rimuovi</button>
+					</form>
+				</td>
+
 				<td><img
 					src="<%=request.getContextPath()%>/images/<%=immagine%>"
 					alt="Immagine prodotto" width="50"></td>
 				<td><%=nome%></td>
 				<td><%=prezzo%> €</td>
 				<td><%=quantita%></td>
-				<td><input type="hidden" name="idProdotto"
-					value="<%=prodotto.getIdProdotto()%>">
-					<button type="submit">Modifica</button></td>
+				<td>
+					<form action="../ModificaQuantitaCarrello" method="post">
+						<input type="number" id="quantita" name="quantita" min="1"
+							value="1" required> <input type="hidden"
+							name="idProdotto" value=<%=prodotto.getIdProdotto()%>>
+							<button type ="submit">Modifica</button>
+					</form>
+				</td>
 				<td><%=totale%> €</td>
 			</tr>
 			<%
@@ -65,14 +75,14 @@
 			} else {
 			%>
 			<tr>
-				<td colspan="7">Il tuo carrello è vuoto.</td>
+				<td>Il tuo carrello è vuoto.</td>
 			</tr>
 			<%
 			}
 			} else {
 			%>
 			<tr>
-				<td colspan="7">Devi effettuare l'accesso per visualizzare il
+				<td>Devi effettuare l'accesso per visualizzare il
 					carrello.</td>
 			</tr>
 			<%
