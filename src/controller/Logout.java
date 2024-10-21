@@ -5,6 +5,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import model.bean.Cliente;
+
 import java.io.IOException;
 
 @WebServlet(name = "Logout", value = "/Logout")
@@ -12,18 +15,17 @@ public class Logout extends HttpServlet{
 
 	    @Override
 	    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	        HttpSession session = request.getSession(false);
-	        if (session != null) {
-	            session.invalidate();
+	       Cliente cliente = (Cliente) request.getSession().getAttribute("cliente");
+	       
+	        if (cliente == null) {
+	            response.sendRedirect(request.getContextPath() + "/login.jsp");
+	            return;
 	        }
-	        
-	        System.out.println("non sono loggato");
+	        request.getSession().invalidate();
 	        response.sendRedirect(request.getContextPath() + "/pages/login.jsp");
+	        
+	       
 	    }
 
-	    @Override
-	    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	        doGet(request, response);
-	    }
 	}
 
