@@ -7,9 +7,9 @@
 				src="${pageContext.request.contextPath}/images/logo.png" alt="Logo"></a>
 		</div>
 		<div class="right-block">
-			<form>
-				<input id="searchForm">
-				<button type="submit">Cerca</button>
+			<form action="RicercaProdotti" method="get">
+				<input type="text" id="searchForm" name="searchForm" required>
+				<input type="submit" value="RicercaProdotti"></input>
 			</form>
 			<%
 			Cliente cliente =  (Cliente) session.getAttribute("cliente");

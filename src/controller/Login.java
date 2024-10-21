@@ -24,7 +24,7 @@ public class Login extends HttpServlet {
 		/*Inserimento username e password*/
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-
+		
 		this.connectionDb = new ConnessioneDb();
 	    connection = connectionDb.getCon();
 		

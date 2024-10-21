@@ -68,7 +68,7 @@ public class AggiungiCarrello  extends HttpServlet {
 		carrello.setIdUtente(cliente.getCodiceFiscale());
 		try {
 			carrelloDAO.insertCarrello(carrello);
-			response.sendRedirect(request.getContextPath() + "/pages/carrello.jsp"); 
+			response.sendRedirect(request.getContextPath() + "pages/carrello.jsp"); 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
