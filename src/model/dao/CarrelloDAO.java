@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import model.bean.Carrello;
+import model.bean.Cliente;
 import model.bean.ConnessioneDb;
 import model.bean.Prodotto;
 
@@ -76,18 +77,52 @@ public class CarrelloDAO {
 		}
 
 	}
-	
+
 	public void updateQuantitaCarrello(Carrello carrello) throws SQLException {
 		String query = "UPDATE Carrello SET quantita = ? WHERE idUtente=? AND idProdotto= ?";
 		try (PreparedStatement ps = connection.prepareStatement(query)) {
 			ps.setInt(1,carrello.getQuantita());
 			ps.setString(2, carrello.getIdUtente());
 			ps.setString(3, carrello.getIdProdotto());
-			
+
 			ps.executeUpdate();
 		}
 	}
+	public boolean productExists(String idProdotto, String idUtente) throws SQLException {
+		String query = "SELECT COUNT(*) FROM Carrello WHERE idProdotto = ? AND idUtente= ?";
+		try (PreparedStatement ps = connection.prepareStatement(query)) {
+			ps.setString(1, idProdotto);
+			ps.setString(2, idUtente);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				return rs.getInt(1) > 0;
+			}
+		}
+		return false;
+	}
+
+	public Carrello selectById(String idUtente,String idProdotto) throws SQLException{
+		String query = "SELECT * FROM Carrello WHERE idUtente=? AND idProdotto= ?";
+		try (PreparedStatement ps = connection.prepareStatement(query)) {
+			ps.setString(1, idUtente);
+			ps.setString(2, idProdotto);
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				Carrello carrello = new Carrello();
+				carrello.setIdProdotto(rs.getString("idProdotto"));
+				carrello.setQuantita(rs.getInt("quantita"));
+				carrello.setIdUtente(rs.getString("idUtente"));
+				return carrello;
+
+			}
+
+		}
+		return null;
+	}
 }
+
+
 
 
 

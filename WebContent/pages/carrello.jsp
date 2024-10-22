@@ -35,17 +35,16 @@
 				<th>Totale carrello</th>
 			</tr>
 			<%
-	
-		if (carrelli != null && !carrelli.isEmpty()) {
-			for (Carrello c : carrelli) {
-		Prodotto prodotto = c.getProdotto();
-		int quantita = c.getQuantita();
-		if (prodotto != null && quantita > 0) {
-			String nome = prodotto.getNome();
-			String immagine = prodotto.getImmagine();
-			double prezzo = prodotto.getPrezzo();
-			double totale = prezzo * quantita;
-	%>
+			if (carrelli != null && !carrelli.isEmpty()) {
+				for (Carrello c : carrelli) {
+					Prodotto prodotto = c.getProdotto();
+					int quantita = c.getQuantita();
+					if (prodotto != null && quantita > 0) {
+				String nome = prodotto.getNome();
+				String immagine = prodotto.getImmagine();
+				double prezzo = prodotto.getPrezzo();
+				double totale = prezzo * quantita;
+			%>
 
 			<tr>
 				<td>
@@ -84,9 +83,37 @@
 			}
 			%>
 		</table>
+		<%
+		if (cliente != null) {
+		%>
+		<input type="submit" value="TerminaOrdine">
+		<%
+		} else {
+		%>
+		<button onclick="showToast()">TerminaOrdine</button>
+		<br>
+		<a href="${pageContext.request.contextPath}/pages/registrazione.jsp">Registrati</a>
+		o <a href="${pageContext.request.contextPath}/pages/login.jsp">Accedi</a>
+
+		<%
+		}
+		%>
+		<div id="toast" class="toast">Non puoi effettuare l'ordine se
+			non sei registrato al nostro sito</div>
+
 	</div>
 
 	<%@ include file="/partials/footer.jsp"%>
 
 </body>
+<script>
+	function showToast() {
+		let toast = document.getElementById("toast");
+		toast.className = "toast show";
+		setTimeout(function() {
+			toast.className = toast.className.replace("show", "");
+		}, 3000);
+	}
+</script>
 </html>
+

@@ -8,6 +8,8 @@
 
 @import url('product.css');
 
+@import url('carrello.css');
+
 body {
 	margin: 0px;
 	font-family: "Playfair Display", serif;

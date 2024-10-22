@@ -18,7 +18,7 @@ public class Logout extends HttpServlet{
 	       Cliente cliente = (Cliente) request.getSession().getAttribute("cliente");
 	       
 	        if (cliente == null) {
-	            response.sendRedirect(request.getContextPath() + "/login.jsp");
+	            response.sendRedirect(request.getContextPath() + "/pages/login.jsp");
 	            return;
 	        }
 	        request.getSession().invalidate();
