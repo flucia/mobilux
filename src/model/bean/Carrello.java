@@ -1,6 +1,9 @@
 package model.bean;
 
-public class Carrello {
+import java.io.Serializable;
+
+public class Carrello implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private String idUtente;
 	private String idProdotto;
 	private int quantita;

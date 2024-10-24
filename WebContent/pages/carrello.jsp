@@ -1,8 +1,8 @@
-<%@ page import="model.dao.CarrelloDAO"%>
+<%@ page import="model.dao.ProdottoDAO"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="model.bean.Carrello"%>
-<%@ page import="model.bean.Cliente"%>
 <%@ page import="model.bean.Prodotto"%>
+<%@ page import="model.bean.Cliente"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,106 +14,108 @@
 <body>
 
 	<%@ include file="/partials/header.jsp"%>
+
 	<%
-	CarrelloDAO carrelloDao = new CarrelloDAO();
-	Cliente user = (Cliente) request.getSession().getAttribute("cliente");
-	String sessionId = request.getSession().getId();
-	String userId = (user != null) ? user.getCodiceFiscale() : sessionId;
-	ArrayList<Carrello> carrelli = carrelloDao.selectAllCarrello(userId);
-	String context = request.getContextPath();
-	String home = context;
-	%>
-	<div>
-		<table>
-			<tr>
-				<th>Rimuovi oggetto dal carrello</th>
-				<th>Immagine</th>
-				<th>Nome</th>
-				<th>Prezzo</th>
-				<th>Quantit&#224</th>
-				<th>Modifica quantit&#224</th>
-				<th>Totale carrello</th>
-			</tr>
+    ProdottoDAO prodottoDAO = new ProdottoDAO();
+
+    Cliente user = (Cliente) request.getSession().getAttribute("cliente");
+
+    ArrayList<Carrello> carrelli = (ArrayList<Carrello>) request.getSession().getAttribute("carrello");
+
+    if (carrelli == null) {
+        carrelli = new ArrayList<Carrello>();
+        request.getSession().setAttribute("carrello", carrelli);
+    }
+
+    double totale = 0; 
+%>
+
+	<div class="container justify-content-center gap-x-2 carrello-body">
+		<div class="grid grid-cols-3 column-gap-2">
 			<%
-			if (carrelli != null && !carrelli.isEmpty()) {
-				for (Carrello c : carrelli) {
-					Prodotto prodotto = c.getProdotto();
-					int quantita = c.getQuantita();
-					if (prodotto != null && quantita > 0) {
-				String nome = prodotto.getNome();
-				String immagine = prodotto.getImmagine();
-				double prezzo = prodotto.getPrezzo();
-				double totale = prezzo * quantita;
-			%>
+        
+        if (!carrelli.isEmpty()) {
+            
+            for (Carrello item : carrelli) {
+                Prodotto prodotto = prodottoDAO.selectAllProdottiById(item.getIdProdotto()); 
 
-			<tr>
-				<td>
-					<form action="../RimuoviItemCarrello" method=post>
-						<input type="hidden" name="idProdotto"
-							value="<%=prodotto.getIdProdotto()%>">
-						<button type="submit">Rimuovi</button>
-					</form>
-				</td>
+                if (prodotto != null) {
+                    int quantita = item.getQuantita(); 
+                    String nome = prodotto.getNome();
+                    String immagine = prodotto.getImmagine();
+                    double prezzo = prodotto.getPrezzo();
+                    totale += prezzo * quantita; 
 
-				<td><img
-					src="<%=request.getContextPath()%>/images/<%=immagine%>"
-					alt="Immagine prodotto" width="50"></td>
-				<td><%=nome%></td>
-				<td><%=prezzo%> €</td>
-				<td><%=quantita%></td>
-				<td>
+        %>
+
+
+			<img src="<%=request.getContextPath()%>/images/<%=immagine%>"
+				alt="Immagine prodotto" class="prodotto-img mt-3">
+			<div class="flex flex-col mt-3">
+				<span><%=nome%></span> <span><%=prezzo%> €</span> <span>Quantità:
+					<%=quantita%></span> <span>Modifica quantità</span>
+				<div>
 					<form action="../ModificaQuantitaCarrello" method="post">
 						<input type="number" id="quantita" name="quantita" min="1"
-							value="1" required> <input type="hidden"
-							name="idProdotto" value=<%=prodotto.getIdProdotto()%>>
+							value="<%=quantita%>" required> <input type="hidden"
+							name="idProdotto" value="<%=prodotto.getIdProdotto()%>">
 						<button type="submit">Modifica</button>
 					</form>
-				</td>
-				<td><%=totale%> €</td>
-			</tr>
-			<%
-			}
-			}
-			} else {
-			%>
-			<tr>
-				<td>Il tuo carrello è vuoto.</td>
-			</tr>
-			<%
-			}
-			%>
-		</table>
-		<%
-		if (cliente != null) {
-		%>
-		<input type="submit" value="TerminaOrdine">
-		<%
-		} else {
-		%>
-		<button onclick="showToast()">TerminaOrdine</button>
-		<br>
-		<a href="${pageContext.request.contextPath}/pages/registrazione.jsp">Registrati</a>
-		o <a href="${pageContext.request.contextPath}/pages/login.jsp">Accedi</a>
+				</div>
+			</div>
 
-		<%
-		}
-		%>
-		<div id="toast" class="toast">Non puoi effettuare l'ordine se
-			non sei registrato al nostro sito</div>
+			<div class="flex flex-col gap-y-2 mt-3">
+				<form action="../RimuoviItemCarrello" method=post>
+					<input type="hidden" name="idProdotto"
+						value="<%=prodotto.getIdProdotto()%>">
+					<button type="submit" class="w-full">Rimuovi</button>
+				</form>
+			</div>
 
+			<%
+                }
+            }
+        } else {
+        %>
+			<span>Il tuo carrello è vuoto.</span>
+
+			<%
+        }
+        %>
+			<span>Totale: <%=totale%> €
+			</span>
+			<%
+        if (user != null && !carrelli.isEmpty()) {
+        %>
+			<form action="../Checkout" method="post">
+				<input type="submit" value="Checkout">
+			</form>
+			<%
+        } else {
+        %>
+			<button onclick="showToast()">Checkout</button>
+			<br> <a
+				href="${pageContext.request.contextPath}/pages/registrazione.jsp">Registrati</a>
+			o <a href="${pageContext.request.contextPath}/pages/login.jsp">Accedi</a>
+
+			<%
+        }
+        %>
+			<div id="toast" class="toast">Non puoi effettuare l'ordine se
+				non sei registrato al nostro sito</div>
+		</div>
 	</div>
 
 	<%@ include file="/partials/footer.jsp"%>
 
 </body>
 <script>
-	function showToast() {
-		let toast = document.getElementById("toast");
-		toast.className = "toast show";
-		setTimeout(function() {
-			toast.className = toast.className.replace("show", "");
-		}, 3000);
-	}
+function showToast() {
+    let toast = document.getElementById("toast");
+    toast.className = "toast show";
+    setTimeout(function() {
+        toast.className = toast.className.replace("show", "");
+    }, 3000);
+}
 </script>
 </html>
-

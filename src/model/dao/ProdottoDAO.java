@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import model.bean.Cliente;
 import model.bean.ConnessioneDb;
 import model.bean.Prodotto;
 
@@ -60,6 +61,28 @@ public class ProdottoDAO {
 			}
 			return prodotti;
 		}
+	}
+	public Prodotto selectAllProdottiById(String idP) throws SQLException {
+		String query = "SELECT * FROM Prodotto WHERE idProdotto = ?";
+		
+		Prodotto prodotto = null;
+		try (PreparedStatement ps = connection.prepareStatement(query)){
+				ps.setString(1, idP);
+				ResultSet rs = ps.executeQuery(); 
+			while (rs.next()) {
+				String idProdotto = rs.getString("idProdotto");
+				String nome = rs.getString("nome");
+				int quantita = rs.getInt("quantità");
+				double prezzo = rs.getDouble("prezzo");
+				String descrizione = rs.getString("descrizione");
+				String immagine = rs.getString("immagine");
+				String idCategoria = rs.getString("idCategoria");
+
+				 prodotto= new Prodotto(idProdotto, nome, quantita, prezzo, descrizione, immagine, idCategoria);
+				
+			}
+		}
+		return prodotto;
 	}
 	
 	

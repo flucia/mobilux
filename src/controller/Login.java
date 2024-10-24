@@ -36,7 +36,7 @@ public class Login extends HttpServlet {
             if(cliente != null) {
 				HttpSession session = request.getSession();
 				session.setAttribute("cliente", cliente);
-				
+				session.setAttribute("utenteLoggato", true);
 				//info cliente loggato
 				 System.out.println("Utente loggato: " + cliente.getNome() + " " + cliente.getCognome() + " (Username: " + cliente.getUsername() + ")");
 

@@ -31,8 +31,9 @@ ArrayList<Prodotto> listaProdotti = prodottoDao.selectByIdCategoria("1");
 				<label for="quantity">Quantità:</label> <input type="number"
 					id="quantita" name="quantita" min="1" value="1" required> <input
 					type="hidden" name="idProdotto" value=<%=p.getIdProdotto()%>>
-
+<%System.out.println(p.getIdProdotto()); %>
 				<button type="submit">Aggiungi al carrello</button>
+				
 			</form>
 		</div>
 

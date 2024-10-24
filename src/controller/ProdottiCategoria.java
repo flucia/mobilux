@@ -23,6 +23,7 @@ public class ProdottiCategoria extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ConnessioneDb conn = new ConnessioneDb();
 		Connection c = conn.getCon();
+		
 		try {
 
 			ProdottoDAO prodottoDAO = new ProdottoDAO();
