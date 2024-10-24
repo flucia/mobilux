@@ -8,12 +8,13 @@
 </head>
 <body>
 
-		<%@ include file="/partials/header.jsp"%>
-		
-	
-	<div></div>
-	
-		<%@ include file="/partials/footer.jsp"%>
-	
+	<%@ include file="/partials/header.jsp"%>
+
+	<main>
+		<div></div>
+	</main>
+	<%@ include file="/partials/footer.jsp"%>
+
 </body>
+
 </html>

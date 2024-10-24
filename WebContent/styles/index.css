@@ -16,24 +16,27 @@ body {
 	min-height: 100vh;
 }
 
+main {
+	padding-bottom: 150px;
+	padding-left: 3%;
+	padding-right: 3%;
+}
+
 .container {
 	display: flex;
 }
 
-a{
+a {
 	text-decoration: none;
 	color: #D78258;
 }
 
 .slideshow-container {
-	max-width: 1000px;
-	position: relative;
-	margin-right: 20px;
+	max-width: 100%;
 }
 
 .mySlides {
 	display: none;
-	max-height: 250px;
 }
 
 .dot {

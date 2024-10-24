@@ -9,11 +9,9 @@
 <body>
 
 	<%@ include file="/partials/header.jsp"%>
-
-	<div>
-		Registrazione avvenuta con successo
-	</div>
-
+	<main>
+		<div>Registrazione avvenuta con successo</div>
+	</main>
 	<%@ include file="/partials/footer.jsp"%>
 
 </body>

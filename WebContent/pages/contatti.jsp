@@ -9,7 +9,7 @@
 </head>
 <body>
 	<%@ include file="/partials/header.jsp"%>
-		Contattaci
+		<main>Contattaci</main>
 	<%@ include file="/partials/footer.jsp"%>
 </body>
 </html>

@@ -10,8 +10,9 @@
 
 		<%@ include file="/partials/header.jsp"%>
 		
-	
+	<main>
 	<div></div>
+	</main>
 	
 		<%@ include file="/partials/footer.jsp"%>
 	

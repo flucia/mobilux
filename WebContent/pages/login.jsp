@@ -9,22 +9,21 @@
 <body>
 
 	<%@ include file="/partials/header.jsp"%>
-
-	<div class="w-full flex justify-content-center login-body">
-		<form action="../Login" method="post"
-			class="flex flex-col align-items-center gap-y-2">
-			<label for="username">Username:</label> <input type="text"
-				id="username" name="username" required> 
-			<label
-				for="password">Password:</label> <input type="password"
-				id="password" name="password" required>
-			<div>
-				<input type="submit" value="Login"> o <a
-					href="${pageContext.request.contextPath}/pages/registrazione.jsp">Registrati</a>
-			</div>
-		</form>
-	</div>
-
+	<main>
+		<div class="w-full flex justify-content-center login-body">
+			<form action="../Login" method="post"
+				class="flex flex-col align-items-center gap-y-2">
+				<label for="username">Username:</label> <input type="text"
+					id="username" name="username" required> <label
+					for="password">Password:</label> <input type="password"
+					id="password" name="password" required>
+				<div>
+					<input type="submit" value="Login"> o <a
+						href="${pageContext.request.contextPath}/pages/registrazione.jsp">Registrati</a>
+				</div>
+			</form>
+		</div>
+	</main>
 	<%@ include file="/partials/footer.jsp"%>
 
 </body>
