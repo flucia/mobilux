@@ -12,12 +12,14 @@
 				<input type="submit" value="RicercaProdotti"></input>
 			</form>
 			<%
-			Cliente cliente =  (Cliente) session.getAttribute("cliente");
+			Cliente cliente = (Cliente) session.getAttribute("cliente");
 			%>
 			<%
-			if (cliente != null ) {
+			if (cliente != null) {
 			%>
-			<a href="${pageContext.request.contextPath}/Logout">Logout</a>
+			<a href="${pageContext.request.contextPath}/Logout">Logout</a> <a
+				href="${pageContext.request.contextPath}/pages/riepilogoOrdini.jsp">Riepilogo
+				Ordini</a>
 			<%
 			} else {
 			%>

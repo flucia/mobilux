@@ -16,15 +16,15 @@ public class ProdottoDAO {
 
 	public ProdottoDAO() {
 		this.connectionDb = new ConnessioneDb();
-	    connection = connectionDb.getCon();
+		connection = connectionDb.getCon();
 	}
 	public ArrayList<Prodotto> selectByIdCategoria(String idCategoria) throws SQLException {
 		ArrayList<Prodotto> prodotti = new ArrayList<>();
 		String query = "SELECT * FROM Prodotto WHERE idCategoria = ?";
 
 		try (PreparedStatement ps = connection.prepareStatement(query)) {
-				ps.setString(1, idCategoria);
-				ResultSet rs = ps.executeQuery();
+			ps.setString(1, idCategoria);
+			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				String idProdotto = rs.getString("idProdotto");
 				String nome = rs.getString("nome");
@@ -45,8 +45,8 @@ public class ProdottoDAO {
 		String query = "SELECT * FROM Prodotto WHERE nome LIKE ?";
 
 		try (PreparedStatement ps = connection.prepareStatement(query)) {
-				ps.setString(1,"%" + nome + "%");
-				ResultSet rs = ps.executeQuery();
+			ps.setString(1,"%" + nome + "%");
+			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
 				String idProdotto = rs.getString("idProdotto");
 				String nomeProdotto = rs.getString("nome");
@@ -64,11 +64,11 @@ public class ProdottoDAO {
 	}
 	public Prodotto selectAllProdottiById(String idP) throws SQLException {
 		String query = "SELECT * FROM Prodotto WHERE idProdotto = ?";
-		
+
 		Prodotto prodotto = null;
 		try (PreparedStatement ps = connection.prepareStatement(query)){
-				ps.setString(1, idP);
-				ResultSet rs = ps.executeQuery(); 
+			ps.setString(1, idP);
+			ResultSet rs = ps.executeQuery(); 
 			while (rs.next()) {
 				String idProdotto = rs.getString("idProdotto");
 				String nome = rs.getString("nome");
@@ -78,12 +78,12 @@ public class ProdottoDAO {
 				String immagine = rs.getString("immagine");
 				String idCategoria = rs.getString("idCategoria");
 
-				 prodotto= new Prodotto(idProdotto, nome, quantita, prezzo, descrizione, immagine, idCategoria);
-				
+				prodotto= new Prodotto(idProdotto, nome, quantita, prezzo, descrizione, immagine, idCategoria);
+
 			}
 		}
 		return prodotto;
 	}
-	
-	
+
+
 }

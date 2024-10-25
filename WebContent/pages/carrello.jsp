@@ -44,6 +44,7 @@
 					String immagine = prodotto.getImmagine();
 					double prezzo = prodotto.getPrezzo();
 					totale += prezzo * quantita;
+					request.getSession().setAttribute("totaleCarrello", totale);
 				%>
 
 
@@ -79,28 +80,26 @@
 
 				<%
 				}
-				%>
-				<span>Totale: <%=totale%> €
-				</span>
-				<%
 				if (user != null && !carrelli.isEmpty()) {
 				%>
 				<form action="../Checkout" method="post">
 					<input type="submit" value="Checkout">
 				</form>
+
+				<span>Totale: <%=totale%> €
+				</span>
+
 				<%
-				} else {
+				} else if(user == null && !carrelli.isEmpty()){
 				%>
-				<button onclick="showToast()">Checkout</button>
-				<br>
-				<span></span>
 				<div class="flex justify-content-center gap-x-2 my-2">
 					<a
 						href="${pageContext.request.contextPath}/pages/registrazione.jsp">Registrati</a>
 					o <a href="${pageContext.request.contextPath}/pages/login.jsp">Accedi</a>
+					<input type="button" onClick="showToast()" value="Checkout">
 				</div>
-				<span></span>
 
+				<br>
 				<%
 				}
 				%>
