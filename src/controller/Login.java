@@ -39,7 +39,7 @@ public class Login extends HttpServlet {
 				session.setAttribute("utenteLoggato", true);
 				//info cliente loggato
 				 System.out.println("Utente loggato: " + cliente.getNome() + " " + cliente.getCognome() + " (Username: " + cliente.getUsername() + ")");
-
+				 System.out.println(cliente.getRuolo());
 				response.sendRedirect(request.getContextPath() + "/pages/index.jsp");
 			} else {
 				request.setAttribute("errorMessage", "Username o password errati.");

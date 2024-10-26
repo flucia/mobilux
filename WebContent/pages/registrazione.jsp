@@ -10,8 +10,9 @@
 
 	<%@ include file="/partials/header.jsp"%>
 	<main>
-		<div>
-			<form action="../Registrazione" method="post">
+		<div class="w-full flex justify-content-center login-body">
+			<form action="../Registrazione" method="post"
+			class="flex-col align-items-center">
 				<label for="cf">CodiceFiscale:</label> <input type="text" id="cf"
 					name="cf" required><br> <br> <label for="nome">Nome:</label>
 				<input type="text" id="nome" name="nome" required><br>
@@ -27,7 +28,7 @@
 					id="indirizzo" name="indirizzo" required><br> <br>
 				<label for="cellulare">Cellulare:</label> <input type="text"
 					id="cellulare" name="cellulare" required><br> <br>
-				<button type="submit">Invia</button>
+				<button type="submit">Registrati</button>
 			</form>
 		</div>
 	</main>

@@ -96,13 +96,12 @@ public class ClienteDAO {
 		}
 		return clienti;
 	}
-	public void insertClienteTemporaneo(String sessionId) throws SQLException {
-	    String query = "INSERT INTO cliente (cf, is_temporary) VALUES (?, TRUE)";
-	    try (PreparedStatement ps = connection.prepareStatement(query)) {
-	        ps.setString(1, sessionId);
-	        ps.executeUpdate();
-	    }
+	public void deleteCliente(String idUtente) throws SQLException {
+		String query = "DELETE FROM Cliente WHERE cf = ?";
+		try (PreparedStatement ps = connection.prepareStatement(query)) {
+			ps.setString(1, idUtente);
+			ps.executeUpdate();
+		}
 	}
-
 
 }

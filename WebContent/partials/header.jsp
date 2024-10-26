@@ -17,6 +17,14 @@
 			<%
 			if (cliente != null) {
 			%>
+			<%
+			if ("admin".equals(cliente.getRuolo())) {
+			%>
+			<a href="${pageContext.request.contextPath}/pages/visualizzaClienti.jsp">Clienti</a>
+
+			<%
+			}
+			%>
 			<a href="${pageContext.request.contextPath}/Logout">Logout</a> <a
 				href="${pageContext.request.contextPath}/pages/riepilogoOrdini.jsp">Riepilogo
 				Ordini</a>

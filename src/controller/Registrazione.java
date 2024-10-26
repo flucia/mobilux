@@ -23,8 +23,8 @@ public class Registrazione extends HttpServlet {
 		String cf = request.getParameter("cf");
 		String nome = request.getParameter("nome");
 		String cognome = request.getParameter("cognome");
-		String email = request.getParameter("email");
 		String username = request.getParameter("username");
+		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 		String ruolo = "utente";
 		String indirizzo = request.getParameter("indirizzo");
