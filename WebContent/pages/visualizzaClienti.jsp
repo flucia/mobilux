@@ -37,12 +37,42 @@
 			<tr>
 				<td><%= c.getNome() %></td>
 				<td><%= c.getCognome() %></td>
-				<td><%= c.getEmail() %></td>
-				<td><%= c.getIndirizzo() %></td>
-				<td><%= c.getCellulare() %></td>
-				<td><button type="submit">X</button></td>
+				<td><input type="email" name="email"
+					value="<%= c.getEmail() %>"
+					form="modificaForm<%= c.getCodiceFiscale() %>"></td>
+				<td><input type="text" name="indirizzo"
+					value="<%= c.getIndirizzo() %>"
+					form="modificaForm<%= c.getCodiceFiscale() %>"></td>
+				<td><input type="text" name="cellulare"
+					value="<%= c.getCellulare() %>"
+					form="modificaForm<%= c.getCodiceFiscale() %>"></td>
+
+				<td>
+					<form id="modificaForm<%= c.getCodiceFiscale() %>"
+						action="ModificaClienteServlet" method="post">
+						<input type="hidden" name="idCliente"
+							value="<%= c.getCodiceFiscale() %>">
+						<button type="submit">Salva</button>
+					</form>
+				</td>
+				<td>
+					<form action="VisualizzaAcquistiServlet" method="get"
+						style="display: inline;">
+						<input type="hidden" name="idCliente"
+							value="<%= c.getCodiceFiscale() %>">
+						<button type="submit">Acquisti</button>
+					</form>
+				</td>
+				<td>
+					<form action="../EliminaCliente" method="post"
+						style="display: inline;">
+						<input type="hidden" name="idCliente"
+							value="<%= c.getCodiceFiscale() %>">
+						<button type="submit">X</button>
+					</form>
+				</td>
 			</tr>
-			<% } %>	
+			<% } %>
 		</table>
 		<% } %>
 	</main>
