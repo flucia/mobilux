@@ -51,7 +51,7 @@ public class Registrazione extends HttpServlet {
 		} catch (SQLException throwables) {
 			throwables.printStackTrace();
 			request.setAttribute("errorMessage", "Errore durante l'inserimento dei dati. Riprova.");
-			RequestDispatcher view = request.getRequestDispatcher("pages/index.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("/pages/index.jsp");
 			view.forward(request, response);
 			return;
 		}

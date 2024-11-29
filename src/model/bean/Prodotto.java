@@ -8,11 +8,12 @@ public class Prodotto {
 	private String descrizione;
 	private String immagine;
 	private String idCategoria;
+	private int quantitaDisponibile; 
 	
 	
 	public Prodotto() {}
 
-	public Prodotto(String idProdotto, String nome, int quantità, double prezzo,String descrizione,String immagine,String idCategoria) {
+	public Prodotto(String idProdotto, String nome, int quantità, double prezzo,String descrizione,String immagine,String idCategoria,int quantitaDisponibile) {
 		this.idProdotto = idProdotto;
 		this.nome = nome;
 		this.quantità = quantità;
@@ -20,6 +21,7 @@ public class Prodotto {
 		this.descrizione = descrizione;
 		this.immagine = immagine;
 		this.idCategoria = idCategoria;
+		this.quantitaDisponibile = quantitaDisponibile;
 	}
 
 	public String getDescrizione() {
@@ -68,6 +70,12 @@ public class Prodotto {
 	public void setIdCategoria(String idCategoria) {
 		this.idCategoria = idCategoria;
 	}
+	public int getQuantitaDisponibile() {
+		return quantitaDisponibile;
+	}
+	public void setQuantitaDisponibile(int quantitaDisponibile) {
+		this.quantitaDisponibile = quantitaDisponibile;
+	}
 
 	@Override
 	public String toString() {
@@ -78,6 +86,7 @@ public class Prodotto {
 				", descrizione=" + descrizione +
 				", immagine=" + immagine +
 				", idCategoria=" + idCategoria +
+				", quantitaDisponibile=" + quantitaDisponibile +
 				"]";
 	}
 }

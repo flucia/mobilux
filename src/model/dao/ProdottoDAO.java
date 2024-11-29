@@ -33,8 +33,9 @@ public class ProdottoDAO {
 				String descrizione = rs.getString("descrizione");
 				String immagine = rs.getString("immagine");
 				idCategoria = rs.getString("idCategoria");
+				int quantitaDisponibile = rs.getInt("quantitaDisponibile");
 
-				Prodotto prodotto = new Prodotto(idProdotto,nome, quantità, prezzo, descrizione, immagine,idCategoria);
+				Prodotto prodotto = new Prodotto(idProdotto,nome, quantità, prezzo, descrizione, immagine,idCategoria,quantitaDisponibile);
 				prodotti.add(prodotto);
 			}
 			return prodotti;
@@ -55,8 +56,9 @@ public class ProdottoDAO {
 				String descrizione = rs.getString("descrizione");
 				String immagine = rs.getString("immagine");
 				String idCategoria = rs.getString("idCategoria");
+				int quantitaDisponibile = rs.getInt("quantitaDisponibile");
 
-				Prodotto prodotto = new Prodotto(idProdotto,nomeProdotto, quantità, prezzo, descrizione, immagine,idCategoria);
+				Prodotto prodotto = new Prodotto(idProdotto,nomeProdotto, quantità, prezzo, descrizione, immagine,idCategoria,quantitaDisponibile);
 				prodotti.add(prodotto);
 			}
 			return prodotti;
@@ -77,13 +79,61 @@ public class ProdottoDAO {
 				String descrizione = rs.getString("descrizione");
 				String immagine = rs.getString("immagine");
 				String idCategoria = rs.getString("idCategoria");
+				int quantitaDisponibile = rs.getInt("quantitaDisponibile");
 
-				prodotto= new Prodotto(idProdotto, nome, quantita, prezzo, descrizione, immagine, idCategoria);
+				prodotto= new Prodotto(idProdotto, nome, quantita, prezzo, descrizione, immagine, idCategoria,quantitaDisponibile);
 
 			}
 		}
 		return prodotto;
 	}
+	public void insertProdotto(Prodotto prodotto) throws SQLException {
+		String query = "INSERT INTO Prodotto (idProdotto,nome,quantità,prezzo,descrizione,immagine,idCategoria,quantitaDisponibile) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+		try (PreparedStatement ps = connection.prepareStatement(query)) {
+			ps.setString(1, prodotto.getIdProdotto());
+			ps.setString(2, prodotto.getNome());
+			ps.setInt(3, prodotto.getQuantità());
+			ps.setDouble(4, prodotto.getPrezzo());
+			ps.setString(5, prodotto.getDescrizione());
+			ps.setString(6, prodotto.getImmagine());
+			ps.setString(7, prodotto.getIdCategoria());
+			ps.setInt(8, prodotto.getQuantitaDisponibile());
+			ps.executeUpdate();
+		}
+	}
+	public void updateQuantitaDisponibile(String idProdotto, int nuovaQuantita)throws SQLException {
+	    try {
+	        String query = "UPDATE prodotto SET quantitaDisponibile = ? WHERE idProdotto = ?";
+	        PreparedStatement ps = connection.prepareStatement(query);
+	        ps.setInt(1, nuovaQuantita);
+	        ps.setString(2, idProdotto);
+	        ps.executeUpdate();
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	}
+	public int getQuantitaDisponibile(String idP) throws SQLException{
+		ArrayList<Prodotto> prodotti = new ArrayList<>();
+		String query = "SELECT quantitaDisponibile FROM Prodotto WHERE idProdotto = ?";
+		int quantitaDisponibile = 0;
 
+		try (PreparedStatement ps = connection.prepareStatement(query)) {
+			ps.setString(1, idP );
+			ResultSet rs = ps.executeQuery(); 
+			while (rs.next()) {
+				quantitaDisponibile = rs.getInt("quantitaDisponibile");
+				}
+			return quantitaDisponibile;
+			}	
+	}
+	public void riduciQuantitaDisponibile(String idProdotto, int quantita) throws SQLException {
+	    String query = "UPDATE Prodotto SET quantitaDisponibile = quantitaDisponibile - ? WHERE idProdotto = ?";
+	    
+	    try (PreparedStatement ps = connection.prepareStatement(query)) {
+	        ps.setInt(1, quantita);
+	        ps.setString(2, idProdotto);
+	        ps.executeUpdate();
+	    }
+	}
 
 }

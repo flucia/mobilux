@@ -33,6 +33,7 @@ public class Checkout extends HttpServlet {
 		Double prezzoTotale = (Double) request.getSession().getAttribute("totaleCarrello"); 
 		ArrayList<Carrello> carrelli = (ArrayList<Carrello>) request.getSession().getAttribute("carrello");
 		OrdineDAO ordineDAO = new OrdineDAO();
+		ProdottoDAO prodottoDao = new ProdottoDAO();
 		Ordine ordine = new Ordine();
 		String stringData = request.getParameter("dataOrdine");
 
@@ -46,8 +47,24 @@ public class Checkout extends HttpServlet {
 			ordine = new Ordine(cliente.getCodiceFiscale(),dataOrdine,prezzoTotale);
 
 			try {
+				
 				ordineInserito = ordineDAO.insertOrdine(ordine);
+				
 				if(ordineInserito) {
+					for (Carrello item : carrelli) {
+                        String idProdotto = item.getIdProdotto();
+                        int quantitaAcquistata = item.getQuantita();
+                        int quantitaDisponibile = prodottoDao.getQuantitaDisponibile(String.valueOf(idProdotto));
+                        if (quantitaAcquistata > quantitaDisponibile) {
+                            request.setAttribute("errorMessage", "Quantità insufficiente per il prodotto: ");
+                            request.getRequestDispatcher("/pages/carrello.jsp").forward(request, response);
+                            return;
+                        }
+
+                        // Aggiorna la quantità disponibile nel database
+                        prodottoDao.riduciQuantitaDisponibile(idProdotto, quantitaAcquistata);
+                    }
+					
 					request.getSession().removeAttribute("totaleCrrello");
 					request.getSession().removeAttribute("carrello");
 					response.sendRedirect(request.getContextPath() + "/pages/riepilogoOrdini.jsp");
