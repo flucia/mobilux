@@ -103,5 +103,28 @@ public class ClienteDAO {
 			ps.executeUpdate();
 		}
 	}
+	public Cliente selectById(String cf) throws SQLException {
+		Cliente cliente = new Cliente();
+		String query = "SELECT * FROM Cliente WHERE cf=?";
+		try (PreparedStatement ps = connection.prepareStatement(query)) {
+			ps.setString(1,cf);
+
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				String nome = rs.getString("nome");
+				String cognome = rs.getString("cognome");
+				String username = rs.getString("username");
+				String email = rs.getString("email");
+				String password = rs.getString("password");
+				String ruolo = rs.getString("ruolo");
+				String indirizzo = rs.getString("indirizzo");
+				String cellulare = rs.getString("cellulare");
+
+			    cliente = new Cliente(cf, nome, cognome, username, email, password, ruolo, indirizzo, cellulare);
+			}
+		}
+		return cliente;
+		
+	}
 
 }
