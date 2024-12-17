@@ -37,6 +37,11 @@ ArrayList<Prodotto> listaProdotti = prodottoDao.selectByIdCategoria("1");
                    <input type="hidden" name="idProdotto" value="<%=p.getIdProdotto()%>">
 				<button type="submit">Aggiungi prodotti</button>
 				</form>	
+				 <form action="../EliminaProdottoCatalogo" method="post">
+                   <input type="hidden" name="idProdotto" value="<%=p.getIdProdotto()%>">
+				<button type="submit">Elimina prodotto</button>
+				</form>	
+				
 				<% } %>
 				<form action="../AggiungiCarrello" method="post">
 					<label for="quantity">Quantità:</label> <input type="number"
