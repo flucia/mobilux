@@ -69,14 +69,15 @@ public class OrdineDAO {
 	public ArrayList<OrdineCliente> cercaOrdini(String query) {
 		ArrayList<OrdineCliente> ordini = new ArrayList<>();
 	   
-	    String sql = "SELECT o.idOrdine, o.dataOrdine, o.prezzoTotale, c.nome "
+	    String sql = "SELECT o.idOrdine, o.dataOrdine, o.prezzoTotale, c.nome, c.cognome "
 	               + "FROM Ordine o "
 	               + "JOIN Cliente c ON o.idUtente = c.cf "
-	               + "WHERE c.nome LIKE ? OR o.dataOrdine LIKE ?";
+	               + "WHERE c.nome LIKE ? OR o.dataOrdine LIKE ? OR c.cognome LIKE ?";
 	    
 	    try (PreparedStatement ps = connection.prepareStatement(sql)) {
 	        ps.setString(1, "%" + query.trim() + "%");
 	        ps.setString(2, "%" + query.trim() + "%");
+	        ps.setString(3, "%" + query.trim() + "%");
 	        
 	        ResultSet rs = ps.executeQuery();
 	       
@@ -87,6 +88,7 @@ public class OrdineDAO {
 	            ordineCliente.setDataOrdine(rs.getDate("dataOrdine").toLocalDate());
 	            ordineCliente.setPrezzoTotale(rs.getDouble("prezzoTotale"));
 	            cliente.setNome(rs.getString("nome"));
+	            cliente.setCognome(rs.getString("cognome"));
 	            ordineCliente.setCliente(cliente);	            
 	            ordini.add(ordineCliente);
 	                    }

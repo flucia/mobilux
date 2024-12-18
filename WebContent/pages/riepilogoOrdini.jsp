@@ -13,6 +13,11 @@
 <%@ include file="/partials/head.jsp"%>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <title>Riepilogo ordini</title>
+			<style>
+.hidden {
+	display: none;
+}
+</style>
 </head>
 <body>
 
@@ -107,12 +112,8 @@
 			}
 			}
 			%>
-
-			<style>
-.hidden {
-	display: none;
-}
-</style>
+</div>
+</main>
 
 			<script>
 function cercaOrdini(event) {
@@ -155,7 +156,7 @@ function cercaOrdini(event) {
 
             const thead = document.createElement('thead');
             const headerRow = document.createElement('tr');
-            ['ID Ordine', 'Nome Cliente', 'Data Ordine', 'Prezzo Totale'].forEach(headerText => {
+            ['ID Ordine', 'Nome Cliente', 'Cognome Cliente', 'Data Ordine', 'Prezzo Totale'].forEach(headerText => {
                 const th = document.createElement('th');
                 th.textContent = headerText;
                 headerRow.appendChild(th);
@@ -174,6 +175,10 @@ function cercaOrdini(event) {
                 const cellNomeCliente = document.createElement('td');
                 cellNomeCliente.textContent = ordine.nomeCliente;
                 row.appendChild(cellNomeCliente);
+                
+                const cellCognomeCliente = document.createElement('td');
+                cellCognomeCliente.textContent = ordine.cognomeCliente;
+                row.appendChild(cellCognomeCliente);
 
                 const cellDataOrdine = document.createElement('td');
                 cellDataOrdine.textContent = ordine.dataOrdine;

@@ -56,12 +56,9 @@
 					</form>
 				</td>
 				<td>
-					<form action="VisualizzaAcquistiServlet" method="get"
-						style="display: inline;">
 						<input type="hidden" name="idCliente"
 							value="<%= c.getCodiceFiscale() %>">
-						<button type="submit">Acquisti</button>
-					</form>
+						<a href="${pageContext.request.contextPath}/pages/riepilogoOrdini.jsp">Ordini</a>
 				</td>
 				<td>
 					<form action="../EliminaCliente" method="post"

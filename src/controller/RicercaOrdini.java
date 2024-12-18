@@ -40,6 +40,7 @@ public class RicercaOrdini extends HttpServlet {
             jsonResponse.append("{")
                         .append("\"idOrdine\":\"").append(ordine.getIdOrdine()).append("\",")
                         .append("\"nomeCliente\":\"").append(ordine.getCliente().getNome()).append("\",")
+                        .append("\"cognomeCliente\":\"").append(ordine.getCliente().getCognome()).append("\",")
                         .append("\"dataOrdine\":\"").append(ordine.getDataOrdine().toString()).append("\",")
                         .append("\"prezzoTotale\":").append(ordine.getPrezzoTotale())
                         .append("}");
