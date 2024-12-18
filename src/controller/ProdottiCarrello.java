@@ -47,8 +47,7 @@ public class ProdottiCarrello extends HttpServlet {
 		request.setAttribute("prodottiNelCarrello", prodottiNelCarrello);
 		request.setAttribute("carrelloPerId", carrelli);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/carrello.jsp");
-		dispatcher.forward(request, response);
+		response.sendRedirect(request.getContextPath() + "/pages/carrello.jsp");
 	}
 
 	@Override

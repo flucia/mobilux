@@ -1,5 +1,6 @@
 package controller;
 import model.dao.ClienteDAO;
+import model.dao.ProdottoDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,16 +14,18 @@ import java.sql.SQLException;
 public class EliminaCliente extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String idCliente = request.getParameter("idCliente");
-
+		
 		ClienteDAO clienteDao = new ClienteDAO();
+		ProdottoDAO prodottoDao = new ProdottoDAO();
 		try {
 			clienteDao.deleteCliente(idCliente);
-			// Redirect alla pagina clienti o aggiorna la listaresponse.sendRedirect(request.getContextPath() + "/pages/visualizzaClienti.jsp");
+			prodottoDao.eliminaProdottoByIdCliente(idCliente);
+			
 			response.sendRedirect(request.getContextPath() + "/pages/visualizzaClienti.jsp");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Errore durante l'eliminazione del cliente.");
-			request.getRequestDispatcher("/pages/visualizzaClienti.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/pages/visualizzaClienti.jsp");
 		}
 	}
 }

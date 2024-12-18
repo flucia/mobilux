@@ -32,11 +32,10 @@ public class RicercaProdotti extends HttpServlet {
 				ProdottoDAO prodottoDAO = new ProdottoDAO();
 
 				ArrayList<Prodotto> prodotti = prodottoDAO.selectByName(nome);
-				// Impostare i prodotti come attributo della request per la JSP
+				
 				request.setAttribute("prodottiNome", prodotti);
-				// Reindirizzare alla JSP che mostrerà i prodotti
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/visualizzaProdotti.jsp");
-				dispatcher.forward(request, response);
+				
+				response.sendRedirect(request.getContextPath() + "/pages/visualizzaProdotti.jsp");
 			} catch (SQLException e) {
 				e.printStackTrace();
 

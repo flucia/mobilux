@@ -44,15 +44,13 @@ public class Registrazione extends HttpServlet {
 
 				request.setAttribute("errorMessage", "Username già esistente. Scegli un altro username.");
 
-				RequestDispatcher view = request.getRequestDispatcher("/index.jsp");
-				view.forward(request, response);
+				response.sendRedirect(request.getContextPath() + "/pages/index.jsp");
 				return;
 			}
 		} catch (SQLException throwables) {
 			throwables.printStackTrace();
 			request.setAttribute("errorMessage", "Errore durante l'inserimento dei dati. Riprova.");
-			RequestDispatcher view = request.getRequestDispatcher("/pages/index.jsp");
-			view.forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/pages/index.jsp");
 			return;
 		}
 

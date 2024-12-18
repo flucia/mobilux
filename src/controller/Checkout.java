@@ -60,17 +60,15 @@ public class Checkout extends HttpServlet {
                             request.getRequestDispatcher("/pages/carrello.jsp").forward(request, response);
                             return;
                         }
-
-                        // Aggiorna la quantità disponibile nel database
                         prodottoDao.riduciQuantitaDisponibile(idProdotto, quantitaAcquistata);
                     }
 					
-					request.getSession().removeAttribute("totaleCrrello");
+					request.getSession().removeAttribute("totaleCarrello");
 					request.getSession().removeAttribute("carrello");
 					response.sendRedirect(request.getContextPath() + "/pages/riepilogoOrdini.jsp");
 				} else {
 					request.setAttribute("errorMessage", "Non posso completare l'ordine");
-					request.getRequestDispatcher("/pages/carrello.jsp").forward(request, response);
+					response.sendRedirect(request.getContextPath() + "/pages/carrello.jsp");
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

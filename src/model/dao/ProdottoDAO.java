@@ -142,5 +142,12 @@ public class ProdottoDAO {
 			ps.executeUpdate();
 		}
 	}
+	public void eliminaProdottoByIdCliente(String idUtente) throws SQLException {
+		String query = "DELETE FROM Prodotto WHERE idUtente = ?";
+		try (PreparedStatement ps = connection.prepareStatement(query)) {
+			ps.setString(1, idUtente);
+			ps.executeUpdate();
+		}
+	}
 
 }

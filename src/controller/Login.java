@@ -43,7 +43,7 @@ public class Login extends HttpServlet {
 				response.sendRedirect(request.getContextPath() + "/pages/index.jsp");
 			} else {
 				request.setAttribute("errorMessage", "Username o password errati.");
-				request.getRequestDispatcher("/pages/login.jsp").forward(request, response);
+				response.sendRedirect(request.getContextPath() + "/pages/login.jsp");
 			}
 		}
 		catch (SQLException e) {

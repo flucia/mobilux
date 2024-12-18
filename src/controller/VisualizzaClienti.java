@@ -29,8 +29,7 @@ public class VisualizzaClienti {
 			
 			request.setAttribute("clienti", clienti);
 			
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/visualizzaClienti.jsp");
-			dispatcher.forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/pages/visualizzaClienti.jsp");
 		} catch (SQLException e) {
 			e.printStackTrace();
 

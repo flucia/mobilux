@@ -21,7 +21,7 @@ public class EliminaProdottoCatalogo extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", "Errore durante l'eliminazione del prodotto.");
-			request.getRequestDispatcher("/pages/cucina.jsp").forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/pages/cucina.jsp");
 		}
 	}
 }

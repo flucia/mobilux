@@ -29,11 +29,10 @@ public class ProdottiCategoria extends HttpServlet {
 			ProdottoDAO prodottoDAO = new ProdottoDAO();
 
 			ArrayList<Prodotto> prodotti = prodottoDAO.selectByIdCategoria("1");
-			// Impostare i prodotti come attributo della request per la JSP
+			
 			request.setAttribute("prodottiCategoria1", prodotti);
-			// Reindirizzare alla JSP che mostrerà i prodotti
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/cucina.jsp");
-			dispatcher.forward(request, response);
+			
+			response.sendRedirect(request.getContextPath() + "/pages/cucina.jsp");
 		} catch (SQLException e) {
 			e.printStackTrace();
 

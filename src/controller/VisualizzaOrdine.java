@@ -44,8 +44,7 @@ public class VisualizzaOrdine extends HttpServlet {
 				request.getRequestDispatcher("/pages/carrello.jsp").forward(request, response);
 			}
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/pages/cucina.jsp");
-			dispatcher.forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/pages/cucina.jsp");
 		} else {
 			response.sendRedirect(request.getContextPath() + "/login.jsp");
 

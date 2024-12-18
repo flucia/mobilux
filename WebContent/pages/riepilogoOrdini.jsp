@@ -123,7 +123,6 @@ function cercaOrdini(event) {
    
     const url = `RicercaOrdini?query=`+ encodedParola;
   
-    // Hide the original table when searching
     const tuttiOrdiniTable = document.getElementById("tuttiOrdiniTable");
     if (tuttiOrdiniTable) {
         tuttiOrdiniTable.classList.add("hidden");
