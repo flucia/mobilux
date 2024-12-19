@@ -48,17 +48,9 @@
 					form="modificaForm<%= c.getCodiceFiscale() %>"></td>
 
 				<td>
-					<form id="modificaForm<%= c.getCodiceFiscale() %>"
-						action="ModificaClienteServlet" method="post">
-						<input type="hidden" name="idCliente"
+		       	<input type="hidden" name="idCliente"
 							value="<%= c.getCodiceFiscale() %>">
-						<button type="submit">Salva</button>
-					</form>
-				</td>
-				<td>
-						<input type="hidden" name="idCliente"
-							value="<%= c.getCodiceFiscale() %>">
-						<a href="${pageContext.request.contextPath}/pages/riepilogoOrdini.jsp">Ordini</a>
+						<a href="${pageContext.request.contextPath}/pages/riepilogoOrdini.jsp">Acquisti</a>
 				</td>
 				<td>
 					<form action="../EliminaCliente" method="post"
