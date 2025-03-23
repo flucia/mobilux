@@ -1,3 +1,9 @@
+.edit-form{
+	 display: flex;
+	 flex-direction: column;
+	 gap: 0.25rem 0px;
+}
+
 .prodotto-body {
 	display: grid;
 	grid-template-columns: auto auto auto;
@@ -19,18 +25,22 @@
 }
 
 .prodotto-img {
-	width: 100%;
+	display: flex;
 	max-width: 300px;
 	height: auto;
 }
 
+
 @media ( max-width: 991px) {
+	.prodotto{
+		padding: 8px;
+	}
 	.prodotto-body {
 		grid-template-columns: 1fr;
+		margin-bottom: 100%;
 	}
 }
 
-/* For screens ≥992px (3 columns) */
 @media ( min-width : 992px) {
 	.prodotto-body {
 		grid-template-columns: 1fr 1fr 1fr;

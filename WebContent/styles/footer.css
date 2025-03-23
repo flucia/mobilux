@@ -21,6 +21,9 @@ footer {
 }
 
 @media ( max-width : 767px) {
+	.footer{
+		position: sticky;
+	}
 	.footer-label {
 		font-size: 14px;
 	}

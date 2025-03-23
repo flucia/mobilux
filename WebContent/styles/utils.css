@@ -38,6 +38,10 @@
 	justify-content: center;
 }
 
+.align-items-center {
+	align-items: center;
+}
+
 .gap-x-1 {
 	gap: 0px 0.25rem;
 }

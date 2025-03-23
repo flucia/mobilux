@@ -114,4 +114,7 @@ a:hover .tooltip {
 	#icon {
 		font-size: 16px;
 	}
+	.mobile-width {
+		width: 60%;
+	}
 }

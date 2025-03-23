@@ -28,7 +28,8 @@
 					<th>Email</th>
 					<th>Indirizzo</th>
 					<th>Cellulare</th>
-					<th></th>
+					<th>Ordini</th>
+					<th>Azioni</th>
 				</tr>
 			</thead>
 			<% 
@@ -50,14 +51,14 @@
 				<td>
 		       	<input type="hidden" name="idCliente"
 							value="<%= c.getCodiceFiscale() %>">
-						<a href="${pageContext.request.contextPath}/pages/riepilogoOrdini.jsp">Acquisti</a>
+						<a href="${pageContext.request.contextPath}/pages/riepilogoOrdini.jsp">Visualizza</a>
 				</td>
 				<td>
 					<form action="../EliminaCliente" method="post"
 						style="display: inline;">
 						<input type="hidden" name="idCliente"
 							value="<%= c.getCodiceFiscale() %>">
-						<button type="submit">X</button>
+						<button type="submit">Elimina</button>
 					</form>
 				</td>
 			</tr>
