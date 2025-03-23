@@ -1,7 +1,6 @@
 .toast {
 	visibility: hidden;
 	min-width: 250px;
-	margin-left: -125px;
 	background-color: #333;
 	color: #fff;
 	text-align: center;
@@ -9,10 +8,12 @@
 	padding: 16px;
 	position: fixed;
 	z-index: 1;
-	left: 50%;
+	bottom: 30px;
+	right: 30px;
 	font-size: 17px;
 	opacity: 0;
 	transition: opacity 0.5s ease, visibility 0.5s ease;
+	background-color: #D78258;
 }
 
 .toast.show {

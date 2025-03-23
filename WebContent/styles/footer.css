@@ -14,3 +14,20 @@ footer {
 	font-size: 14px;
 	color: #4B4E5A;
 }
+
+.info-section {
+	display: flex;
+	flex-direction: column;
+}
+
+@media ( max-width : 767px) {
+	.footer-label {
+		font-size: 14px;
+	}
+	.clients-label {
+		display: none;
+	}
+	.info-section {
+		display: none;
+	}
+}

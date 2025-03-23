@@ -36,13 +36,13 @@
 	}
 	%>
 	<main>
-		<div id="listaOrdini">
+		<div class="order" id="listaOrdini">
 			<%
 			if ("admin".equals(cliente.getRuolo())) {
 			%>
 			<form onsubmit="cercaOrdini(event)">
 				<input type="text" id="inputCerca" placeholder="cerca">
-				<button type="submit">Cerca</button>
+				<button class="button-order" type="submit">Cerca</button>
 			</form>
 			<div id="risultatoRicerca"></div>
 			<%
@@ -52,8 +52,7 @@
 			if (listaOrdini != null && !listaOrdini.isEmpty()) {
 				if ("admin".equals(cliente.getRuolo())) {
 			%>
-			<table id="tuttiOrdiniTable" border="1"
-				style="width: 100%; margin-top: 20px;">
+			<table id="tuttiOrdiniTable">
 				<thead>
 					<tr>
 						<th>ID Ordine</th>

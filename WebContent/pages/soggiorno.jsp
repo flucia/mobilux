@@ -11,20 +11,19 @@
 <script
 	src="<%=request.getContextPath()%>/scripts/toastAggiuntaCarrello.js"></script>
 <%
-String categoriaId = "6";
+String categoriaId = "2";
 ProdottoDAO prodottoDao = new ProdottoDAO();
-ArrayList<Prodotto> listaProdotti = prodottoDao.selectByIdCategoria("6");
+ArrayList<Prodotto> listaProdotti = prodottoDao.selectByIdCategoria("2");
 %>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Esterni</title>
+<title>Soggiorno</title>
 </head>
 <body>
 	<%@ include file="/partials/header.jsp"%>
 	<main>
 		<div class="prodotto-body">
-			<%
-			if (cliente == null || "utente".equals(cliente.getRuolo())) {
-				for (Prodotto p : listaProdotti) {
+			<% if (cliente == null || "utente".equals(cliente.getRuolo())) { 
+			for (Prodotto p : listaProdotti) {
 			%>
 
 			<div class="grid-item prodotto">
@@ -49,14 +48,10 @@ ArrayList<Prodotto> listaProdotti = prodottoDao.selectByIdCategoria("6");
 
 			</div>
 
-			<%
-			}
-			}
-			%>
+			<%} } %>
 
-			<%
-			if (cliente != null && "admin".equals(cliente.getRuolo())) {
-				for (Prodotto prodotto : listaProdotti) {
+			<% if (cliente != null && "admin".equals(cliente.getRuolo())) { 
+			         for (Prodotto prodotto : listaProdotti) {
 			%>
 
 			<div class="grid-item prodotto">
@@ -94,18 +89,13 @@ ArrayList<Prodotto> listaProdotti = prodottoDao.selectByIdCategoria("6");
 					<button type="submit">Aggiungi al carrello</button>
 				</form>
 			</div>
-			<%
-			}
-			}
-			%>
+			<% } }%>
 
-			<%
-			if (cliente != null && "admin".equals(cliente.getRuolo())) {
-			%>
+			<% if (cliente != null && "admin".equals(cliente.getRuolo())) { %>
 			<div class="grid-item prodotto">
 				<h3>
 					Aggiungi un nuovo prodotto
-					<%=categoriaId%></h3>
+					<%= categoriaId %></h3>
 				<form action="../AggiungiProdottoCatalogo" method="post"">
 
 					<label for="nome">Nome prodotto:</label> <input type="text"
@@ -122,30 +112,26 @@ ArrayList<Prodotto> listaProdotti = prodottoDao.selectByIdCategoria("6");
 						min="1" required><br> <label for="immagine">Immagine
 						prodotto:</label> <input type="text" id="immagine" name="immagine"
 						required><br> <input type="hidden" name="categoria"
-						value="<%=categoriaId%>">
+						value="<%= categoriaId %>">
 
 					<button type="submit">Aggiungi prodotto</button>
 				</form>
 			</div>
-			<%
-			}
-			%>
+			<% }	%>
 		
 	</main>
 	<%
-	String toastMessage = (String) session.getAttribute("toastMessage");
-	if (toastMessage != null) {
-		session.removeAttribute("toastMessage");
-	%>
+
+String toastMessage = (String) session.getAttribute("toastMessage");
+if (toastMessage != null) { 
+    session.removeAttribute("toastMessage");
+%>
 	<script>
     window.onload = function() {
-        showToast("<%=toastMessage%>
-		");
-		};
-	</script>
-	<%
-	}
-	%>
+        showToast("<%= toastMessage %>");
+    };
+</script>
+	<% } %>
 	<%@ include file="/partials/footer.jsp"%>
 </body>
 

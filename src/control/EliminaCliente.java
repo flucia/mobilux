@@ -1,4 +1,4 @@
-package controller;
+package control;
 import model.dao.ClienteDAO;
 import model.dao.ProdottoDAO;
 

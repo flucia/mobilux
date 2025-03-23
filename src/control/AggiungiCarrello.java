@@ -1,6 +1,7 @@
-package controller;
+package control;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -13,6 +14,8 @@ import javax.servlet.http.HttpSession;
 
 import model.bean.Carrello;
 import model.bean.Cliente;
+import model.bean.Prodotto;
+import model.dao.ProdottoDAO;
 
 
 @WebServlet(name = "AggiungiCarrello", value = "/AggiungiCarrello")
@@ -24,18 +27,13 @@ public class AggiungiCarrello extends HttpServlet {
 		Cliente cliente = (Cliente) session.getAttribute("cliente");
 		String idProdotto = request.getParameter("idProdotto");
 		String quantitaString = request.getParameter("quantita");
-
-		if (quantitaString == null) {
-			request.setAttribute("errorMessage", "Quantità non valida.");
-			RequestDispatcher view = request.getRequestDispatcher("/pages/index.jsp");
-			view.forward(request, response);
-			return;
-		}
-
+		String quantitaDisponibileStr = request.getParameter("quantitaDisponibile");
+	
+		int quantitaDisponibile = Integer.parseInt(quantitaDisponibileStr);
 		int quantita = Integer.parseInt(quantitaString);
-		ArrayList<Carrello> carrelloSessione = (ArrayList<Carrello>) session.getAttribute("carrello");
-
 		
+		ArrayList<Carrello> carrelloSessione = (ArrayList<Carrello>) session.getAttribute("carrello");
+	
 		if (carrelloSessione == null) {
 			carrelloSessione = new ArrayList<>();
 		}
@@ -55,10 +53,11 @@ public class AggiungiCarrello extends HttpServlet {
 			nuovoItem.setQuantita(quantita);
 			carrelloSessione.add(nuovoItem);
 		}
-
+		
 		session.setAttribute("carrello", carrelloSessione);
-
-		response.sendRedirect(request.getContextPath() + "/pages/carrello.jsp");
+		
+		session.setAttribute("toastMessage", "Articolo aggiunto al carrello!");
+		response.sendRedirect(request.getContextPath() + "/pages/cucina.jsp");
 	}
 
 	@Override

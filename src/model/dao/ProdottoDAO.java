@@ -163,6 +163,28 @@ public class ProdottoDAO {
 	      
 	    }
 	}
+	public Prodotto selectById(String idProdotto) throws SQLException {
+		String query = "SELECT * FROM Prodotto WHERE idProdotto = ?";
 
+		Prodotto prodotto = new Prodotto();
+		try (PreparedStatement ps = connection.prepareStatement(query)){
+			ps.setString(1, idProdotto);
+			ResultSet rs = ps.executeQuery(); 
+			while (rs.next()) {
+				String nome = rs.getString("nome");
+				int quantita = rs.getInt("quantità");
+				double prezzo = rs.getDouble("prezzo");
+				String descrizione = rs.getString("descrizione");
+				String immagine = rs.getString("immagine");
+				String idCategoria = rs.getString("idCategoria");
+				int quantitaDisponibile = rs.getInt("quantitaDisponibile");
+
+				 prodotto= new Prodotto(idProdotto, nome, quantita, prezzo, descrizione, immagine, idCategoria,quantitaDisponibile);
+
+			}
+		}
+		System.out.println("ID prodotto richiesto: " + idProdotto);
+		return prodotto;
+	}
 
 }

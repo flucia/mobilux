@@ -1,17 +1,19 @@
 .navbar {
-	height: 64px;
+	height: 75px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding-left:3%;
-	padding-right:3%;
+	padding-left: 3%;
+	padding-right: 3%;
 	border-bottom: 1px solid #E4E4E4;
 	background-color: #F5F1E6;
-	
-	.right-block{
-		display: flex;
-		column-gap: 16px;
-	}
+	column-gap: 16px;
+	align-items: center;
+}
+
+.right-block {
+	display: flex;
+	align-items: center;
 }
 
 .logo {
@@ -19,8 +21,8 @@
 	width: 50%;
 }
 
-.sub-navbar{
-	display:flex;
+.sub-navbar {
+	display: flex;
 	justify-content: space-between;
 	color: #D78258;
 	align-items: center;
@@ -29,5 +31,87 @@
 	margin-bottom: 8px;
 	height: 30px;
 	color: #4B4E5A;
-	
+}
+
+#icon {
+	font-size: 20px;
+	padding: 15px;
+}
+
+#profile-icon {
+	cursor: pointer;
+	position: relative;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f0a986;
+	border-radius: 5px;
+	width: fit-content;
+}
+
+.dropdown-content a {
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	color: white;
+	font-size: 14px;
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.tooltip {
+	display: none;
+	position: absolute;
+	background-color: rgba(0, 0, 0, 0.7);
+	color: white;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+a:hover .tooltip {
+	display: block;
+}
+
+.input-search {
+	padding: 8px;
+	margin-bottom: 0px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.searchForm {
+	display: flex;
+}
+
+@media ( max-width : 767px) {
+	.searchForm {
+		align-items: center;
+		height: 100%;
+	}
+	.navbar {
+		justify-content: center;
+		height: 50px;
+	}
+	.logo {
+		width: 50px;
+		height: 50px;
+	}
+	.right-block {
+		display: flex;
+		align-items: center;
+	}
+	.sub-navbar {
+		width: auto;
+		font-size: 12px;
+	}
+	.login-label {
+		font-size: 14px;
+	}
+	#icon {
+		font-size: 16px;
+	}
 }

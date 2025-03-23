@@ -21,7 +21,7 @@ ArrayList<Prodotto> listaProdotti = prodottoDao.selectByName(nome);
 			<%
 			for (Prodotto p : listaProdotti) {
 			%>
-			<div class="grid-item prodotto">
+			<div id="prodotti" class="grid-item prodotto">
 				<img src="<%=request.getContextPath()%>/images/<%=p.getImmagine()%>"
 					alt="img-prodotto" class="prodotto-img">
 				<h2><%=p.getNome()%></h2>
@@ -31,7 +31,7 @@ ArrayList<Prodotto> listaProdotti = prodottoDao.selectByName(nome);
 					<label for="quantity">Quantità:</label> <input type="number"
 						id="quantita" name="quantita" min="1" value="1" required>
 					<input type="hidden" name="idProdotto" value=<%=p.getIdProdotto()%>>
-
+					<br></br>
 					<button type="submit">Aggiungi al carrello</button>
 				</form>
 			</div>

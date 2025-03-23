@@ -9,6 +9,8 @@
 <html lang="it">
 <head>
 <%@ include file="/partials/head.jsp"%>
+<script src="<%=request.getContextPath()%>/scripts/toast.js"></script>
+
 <title>Carrello</title>
 </head>
 <body>
@@ -76,21 +78,21 @@
 				}
 				} else {
 				%>
-				<span>Il tuo carrello è vuoto.</span>
+				<span >Il tuo carrello è vuoto.</span>
 
 				<%
 				}
 				if (user != null && !carrelli.isEmpty()) {
 				%>
 				<form action="../Checkout" method="post">
-					<input type="submit" value="Checkout">
+					<button type="submit" value="Checkout"></button>
 				</form>
 
 				<span>Totale: <%=totale%> €
 				</span>
 
 				<%
-				} else if(user == null && !carrelli.isEmpty()){
+				} else if (user == null && !carrelli.isEmpty()) {
 				%>
 				<div class="flex justify-content-center gap-x-2 my-2">
 					<a
@@ -114,13 +116,4 @@
 	<%@ include file="/partials/footer.jsp"%>
 
 </body>
-<script>
-	function showToast() {
-		let toast = document.getElementById("toast");
-		toast.className = "toast show";
-		setTimeout(function() {
-			toast.className = toast.className.replace("show", "");
-		}, 3000);
-	}
-</script>
 </html>

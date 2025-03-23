@@ -1,4 +1,4 @@
-package controller;
+package control;
 import model.dao.ProdottoDAO;
 
 import javax.servlet.ServletException;

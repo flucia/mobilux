@@ -10,6 +10,10 @@
 
 @import url('carrello.css');
 
+@import url('registrazione.css');
+
+@import url('riepilogoOrdini.css');
+
 
 body {
 	margin: 0px;
@@ -31,6 +35,15 @@ a {
 	text-decoration: none;
 	color: #D78258;
 }
+
+input:focus {
+    border: 2px solid #D78258 ;
+    outline: none;
+    background-color: #FFF7E6;
+    color: #D78258;
+    transition: all 0.3s ease-in-out;
+}
+
 
 .slideshow-container {
 	max-width: 100%;

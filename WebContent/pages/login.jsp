@@ -13,12 +13,13 @@
 		<div class="w-full flex justify-content-center login-body">
 			<form action="../Login" method="post"
 				class="flex flex-col align-items-center gap-y-2">
-				<label class="label" for="username">Username:</label> <input type="text"
+				<label class="label" for="username">Username:</label> <input class="form-registrazione"
+				 type="text"
 					id="username" name="username" required> <label
-					for="password">Password:</label> <input type="password"
+					for="password">Password:</label> <input class="form-registrazione" type="password"
 					id="password" name="password" required>
 				<div>
-					<input type="submit" value="Login"> o <a
+					<input class="form-registrazione"type="submit" value="Login"> o <a
 						href="${pageContext.request.contextPath}/pages/registrazione.jsp">Registrati</a>
 				</div>
 			</form>
