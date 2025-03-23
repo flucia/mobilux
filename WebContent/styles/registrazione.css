@@ -1,0 +1,36 @@
+.form-registrazione-wrap {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	max-width: 400px;
+}
+
+label {
+	margin-bottom: 3px;
+}
+
+.form-registrazione {
+	padding: 8px;
+	margin-bottom: 5px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+small {
+	font-size: 12px;
+	color: gray;
+	margin-bottom: 10px;
+}
+
+button {
+	background-color: #D78258;
+	color: white;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #9f5f3f;
+}
