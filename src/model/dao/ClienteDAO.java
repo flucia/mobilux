@@ -40,7 +40,6 @@ public class ClienteDAO {
 				String indirizzo = rs.getString(8);
 				String cellulare = rs.getString(9);
 
-				// Creare il cliente con i dati ottenuti dal database
 				cliente = new Cliente(cf, nome, cognome, email, user, pass, ruolo, indirizzo, cellulare);
 			}
 		}
@@ -96,10 +95,10 @@ public class ClienteDAO {
 		}
 		return clienti;
 	}
-	public void deleteCliente(String idUtente) throws SQLException {
+	public void deleteCliente(String cf) throws SQLException {
 		String query = "DELETE FROM Cliente WHERE cf = ?";
 		try (PreparedStatement ps = connection.prepareStatement(query)) {
-			ps.setString(1, idUtente);
+			ps.setString(1, cf);
 			ps.executeUpdate();
 		}
 	}

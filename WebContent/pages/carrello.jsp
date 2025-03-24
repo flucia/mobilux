@@ -72,20 +72,26 @@
 						<button type="submit" class="w-full">Rimuovi</button>
 					</form>
 				</div>
-
+				<div class="flex flex-col gap-y-2 mt-3">
+					<form action="../SvuotaCarrello" method=post>
+						<input type="hidden" name="idProdotto"
+							value="<%=prodotto.getIdProdotto()%>">
+						<button type="submit" class="w-full">Svuota carrello</button>
+					</form>
+				</div>
 				<%
 				}
 				}
 				} else {
 				%>
-				<span >Il tuo carrello è vuoto.</span>
+				<span>Il tuo carrello è vuoto.</span>
 
 				<%
 				}
 				if (user != null && !carrelli.isEmpty()) {
 				%>
 				<form action="../Checkout" method="post">
-					<button type="submit" value="Checkout"></button>
+					<button type="submit" value="Checkout">Checkout</button>
 				</form>
 
 				<span>Totale: <%=totale%> €

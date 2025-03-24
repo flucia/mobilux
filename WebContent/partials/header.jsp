@@ -33,12 +33,7 @@
 					</a>
 				</div>
 			</div>
-			<a href="${pageContext.request.contextPath}/pages/carrello.jsp">
-				<span id="icon">
-					<img class="" src="${pageContext.request.contextPath}/images/cart.svg" alt="Cart" />
-				</span>
-				<span class="tooltip">Carrello</span>
-			</a>
+			
 			<a href="${pageContext.request.contextPath}/Logout">
 				<span id="icon">
 					<img class="" src="${pageContext.request.contextPath}/images/box-arrow-right.svg" alt="logout" />
@@ -52,6 +47,12 @@
 				Login
 			</a>
 			<% } %>
+			<a href="${pageContext.request.contextPath}/pages/carrello.jsp">
+				<span id="icon">
+					<img class="" src="${pageContext.request.contextPath}/images/cart.svg" alt="Cart" />
+				</span>
+				<span class="tooltip">Carrello</span>
+			</a>
 		</div>
 	</nav>
 	<div class="sub-navbar container">

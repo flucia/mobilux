@@ -13,7 +13,7 @@ import java.sql.SQLException;
 @WebServlet(name="EliminaCliente", value="/EliminaCliente")
 public class EliminaCliente extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String idCliente = request.getParameter("idCliente");
+		String idCliente = request.getParameter("cf");
 		
 		ClienteDAO clienteDao = new ClienteDAO();
 		ProdottoDAO prodottoDao = new ProdottoDAO();

@@ -34,3 +34,6 @@ button {
 button:hover {
 	background-color: #9f5f3f;
 }
+.errore {
+	color: red;
+}

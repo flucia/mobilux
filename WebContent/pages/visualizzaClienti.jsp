@@ -49,14 +49,14 @@
 					form="modificaForm<%= c.getCodiceFiscale() %>"></td>
 
 				<td>
-		       	<input type="hidden" name="idCliente"
+		       	<input type="hidden" name="cf"
 							value="<%= c.getCodiceFiscale() %>">
 						<a href="${pageContext.request.contextPath}/pages/riepilogoOrdini.jsp">Visualizza</a>
 				</td>
 				<td>
 					<form action="../EliminaCliente" method="post"
 						style="display: inline;">
-						<input type="hidden" name="idCliente"
+						<input type="hidden" name="cf"
 							value="<%= c.getCodiceFiscale() %>">
 						<button type="submit">Elimina</button>
 					</form>

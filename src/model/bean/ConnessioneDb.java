@@ -9,7 +9,7 @@ public class ConnessioneDb {
 	public ConnessioneDb(){
 		
 		try{
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			String url = "jdbc:mysql://localhost:3306/Mobilux";
 			con = DriverManager.getConnection(url,"root","00000000");
 

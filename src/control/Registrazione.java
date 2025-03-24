@@ -1,6 +1,4 @@
 package control;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,17 +6,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.bean.Cliente;
-import model.bean.ConnessioneDb;
 import model.dao.ClienteDAO;
 
 import java.io.IOException;
-import java.sql.Connection;
 import java.sql.SQLException;
 
 @WebServlet(name = "Registrazione", value = "/Registrazione")
 public class Registrazione extends HttpServlet {
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		String cf = request.getParameter("cf");
 		String nome = request.getParameter("nome");
@@ -30,35 +27,35 @@ public class Registrazione extends HttpServlet {
 		String indirizzo = request.getParameter("indirizzo");
 		String cellulare = request.getParameter("cellulare");
 
-
+		System.out.println("cf: " + cf);
+		System.out.println("nome: " + nome);
+		System.out.println("cognome: " + cognome);
+		System.out.println("username: " + username);
+		System.out.println("email: " + email);
+		System.out.println("ruolo: " + ruolo);
+		System.out.println("password: " + password);
+		System.out.println("indirizzo: " + indirizzo);
+		System.out.println("cellulare: " + cellulare);
 		Cliente cliente = new Cliente(cf, nome, cognome, username, email, password, ruolo, indirizzo, cellulare);
-		ConnessioneDb conn = new ConnessioneDb();
-		Connection c = conn.getCon();
+
+		ClienteDAO clienteDAO = new ClienteDAO();
 
 		try {
-			ClienteDAO clienteDAO = new ClienteDAO();
 			if (!clienteDAO.usernameExists(username)) {
+			System.out.println(cliente);
 				clienteDAO.insertCliente(cliente);
-				response.sendRedirect(request.getContextPath() + "/pages/registrazioneResult.jsp"); 
-			} else {
-
-				request.setAttribute("errorMessage", "Username già esistente. Scegli un altro username.");
-
-				response.sendRedirect(request.getContextPath() + "/pages/index.jsp");
-				return;
+				response.sendRedirect("./pages/registrazioneResult.jsp");
+				
 			}
-		} catch (SQLException throwables) {
-			throwables.printStackTrace();
-			request.setAttribute("errorMessage", "Errore durante l'inserimento dei dati. Riprova.");
-			response.sendRedirect(request.getContextPath() + "/pages/index.jsp");
-			return;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
-
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doGet(request, response);
 	}
 }

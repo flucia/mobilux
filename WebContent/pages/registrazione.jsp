@@ -12,10 +12,11 @@
 	<%@ include file="/partials/header.jsp"%>
 <main>
 	<div class="w-full flex justify-content-center login-body">
-		<form class="form-registrazione-wrap" action="../Registrazione" method="post" id="registrazione"
+		<form id="registrazione" class="form-registrazione-wrap" action="../Registrazione" method="post" 
 		class="flex-col align-items-center">
 		 <label for="cf">Codice Fiscale:</label>
-        <input class="form-registrazione" type="text" id="cf" name="cf" onchange="validaCodiceFiscale(cf)" required>
+        <input class="form-registrazione" type="text" id="cf" name="cf" required>
+        <div id="cfError" class="errore"></div>
         
         <label for="nome">Nome:</label>
         <input class="form-registrazione" type="text" id="nome" name="nome" required>
@@ -27,8 +28,9 @@
         <input class="form-registrazione" type="text" id="username" name="username" required>
         
         <label for="email">Email:</label>
-        <input class="form-registrazione" type="email" id="email" name="email" onchange="validateEmail(email)" required>
+        <input class="form-registrazione" type="email" id="email" name="email" required>
         <small>Formato valido: esempio@email.com</small>
+          <div id="emailError" class="errore"></div>
         
         <label for="password">Password:</label>
         <input class="form-registrazione" type="password" id="password" name="password" required>
@@ -37,16 +39,20 @@
         <input class="form-registrazione" type="text" id="indirizzo" name="indirizzo" required>
         
         <label for="cellulare">Cellulare:</label>
-        <input class="form-registrazione" type="text" id="cellulare" name="cellulare" onchange="validaCellulare(cellulare)" required>
+        <input class="form-registrazione" type="text" id="cellulare" name="cellulare" required>
         <small>Formato valido: +39	3456789012</small>
-        
+        <div id="cellError" class="errore"></div>
         <br> <br>
         
-        <button type="submit">Registrati</button>
+        <button id="registrazioneButton" type="submit" >Registrati</button>
 		</form>
+		<p id="log"></p>
+		
 	</div>
 </main>
 <%@ include file="/partials/footer.jsp"%>
+<script src="<%=request.getContextPath()%>/scripts/validazione.js"></script>
+</body>
 
 </body>
 </html>

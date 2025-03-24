@@ -39,7 +39,7 @@ a {
 input:focus {
     border: 2px solid #D78258 ;
     outline: none;
-    background-color: #FFF7E6;
+    background-color: #FFF7E6 !important ;
     color: #D78258;
     transition: all 0.3s ease-in-out;
 }

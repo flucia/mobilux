@@ -22,4 +22,5 @@
 	</script>
 <script src="<%=request.getContextPath()%>/scripts/validazione.js"></script>
 <script src="<%=request.getContextPath()%>/scripts/ricerca.js"></script>
+<script src="<%=request.getContextPath()%>/scripts/riepilogoOrdini.js"></script>
 
