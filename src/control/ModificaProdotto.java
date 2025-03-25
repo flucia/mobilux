@@ -41,7 +41,7 @@ public class ModificaProdotto extends HttpServlet  {
 			e.printStackTrace();
 		}
 		
-		response.sendRedirect(request.getContextPath() + "/pages/cucina.jsp");
+		response.sendRedirect(request.getContextPath());
 	}
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

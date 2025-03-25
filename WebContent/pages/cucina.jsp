@@ -78,22 +78,17 @@ ArrayList<Prodotto> listaProdotti = prodottoDao.selectByIdCategoria("1");
 				</form>
 
 				<form action="../ModificaQuantitaDisponibile" method="post" class="edit-form">
+				<p>
+					Disponibili:
+					<%=prodotto.getQuantitaDisponibile()%></p>
 					<label for="quantity">Quantità:</label>
 					<input class="" type="number" id="quantitaDisponibile"
 						name="quantitaDisponibile" min="1" value="1" required> <input
 						type="hidden" name="idProdotto"
 						value="<%=prodotto.getIdProdotto()%>">
+						<%System.out.println(prodotto.getIdProdotto()); %>
 					<button type="submit">Modifica quantità prodotto</button>
 				</form>
-
-				<form action="../AggiungiCarrello" method="post" class="flex flex-col gap-y-1">
-					<label for="quantity">Aggiungi:</label> <input type="number"
-						id="quantita" name="quantita" value="1" required> <input
-						type="hidden" name="idProdotto"
-						value=<%=prodotto.getIdProdotto()%>>
-					<button type="submit">Aggiungi al carrello</button>
-				</form>
-				
 				<form action="../EliminaProdottoCatalogo" method="post">
 					<input type="hidden" name="idProdotto"
 						value="<%=prodotto.getIdProdotto()%>">

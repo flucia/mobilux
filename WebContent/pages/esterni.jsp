@@ -16,15 +16,14 @@ ProdottoDAO prodottoDao = new ProdottoDAO();
 ArrayList<Prodotto> listaProdotti = prodottoDao.selectByIdCategoria("6");
 %>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Esterni</title>
+<title>Cucina</title>
 </head>
 <body>
 	<%@ include file="/partials/header.jsp"%>
 	<main>
 		<div class="prodotto-body">
-			<%
-			if (cliente == null || "utente".equals(cliente.getRuolo())) {
-				for (Prodotto p : listaProdotti) {
+			<% if (cliente == null || "utente".equals(cliente.getRuolo())) { 
+			for (Prodotto p : listaProdotti) {
 			%>
 
 			<div class="grid-item prodotto">
@@ -49,64 +48,61 @@ ArrayList<Prodotto> listaProdotti = prodottoDao.selectByIdCategoria("6");
 
 			</div>
 
-			<%
-			}
-			}
+			<%} } %>
+
+			<% if (cliente != null && "admin".equals(cliente.getRuolo())) { 
+			         for (Prodotto prodotto : listaProdotti) {
 			%>
 
-			<%
-			if (cliente != null && "admin".equals(cliente.getRuolo())) {
-				for (Prodotto prodotto : listaProdotti) {
-			%>
-
-			<div class="grid-item prodotto">
-				<form action="../ModificaProdotto" method="post">
+			<div class="grid-item prodotto gap-y-1">
+				<form action="../ModificaProdotto" method="post" class="edit-form">
 					<img
 						src="<%=request.getContextPath()%>/images/<%=prodotto.getImmagine()%>"
-						alt="img-prodotto" class="prodotto-img"> <input
+						alt="img-prodotto" class="prodotto-img align-items-center"> 
+					<input
 						type="hidden" name="idProdotto"
-						value=<%=prodotto.getIdProdotto()%>> <input
-						value="<%=prodotto.getNome()%>" name="nome" id="nome"> <input
+						value=<%=prodotto.getIdProdotto()%>> 
+					<label for="Nome">Nome:</label>
+					<input
+						value="<%=prodotto.getNome()%>" name="nome" id="nome"> 
+					<label for="Descrizione">Descrizione:</label>
+					<input
 						value="<%=prodotto.getDescrizione()%>" name="descrizione"
-						id="descrizione"> <input value="<%=prodotto.getPrezzo()%>"
+						id="descrizione"> 
+					<label for="prezzo">Prezzo:</label>
+					<span class="flex gap-x-1">
+					<input class="w-full" value="<%=prodotto.getPrezzo()%>"
 						name="prezzo" id="prezzo">€
-					<button type="submit">Modifica</button>
+					</span>
+					<button type="submit">Salva</button>
 				</form>
 
-				<form action="../ModificaQuantitaDisponibile" method="post">
-					<input type="number" id="quantitaDisponibile"
+				<form action="../ModificaQuantitaDisponibile" method="post" class="edit-form">
+				<p>
+					Disponibili:
+					<%=prodotto.getQuantitaDisponibile()%></p>
+					<label for="quantity">Quantità:</label>
+					<input class="" type="number" id="quantitaDisponibile"
 						name="quantitaDisponibile" min="1" value="1" required> <input
 						type="hidden" name="idProdotto"
 						value="<%=prodotto.getIdProdotto()%>">
+						<%System.out.println(prodotto.getIdProdotto()); %>
 					<button type="submit">Modifica quantità prodotto</button>
 				</form>
-
 				<form action="../EliminaProdottoCatalogo" method="post">
 					<input type="hidden" name="idProdotto"
 						value="<%=prodotto.getIdProdotto()%>">
 					<button type="submit">Elimina prodotto</button>
 				</form>
-				<form action="../AggiungiCarrello" method="post">
-					<label for="quantity">Quantità:</label> <input type="number"
-						id="quantita" name="quantita" value="1" required> <input
-						type="hidden" name="idProdotto"
-						value=<%=prodotto.getIdProdotto()%>>
-					<button type="submit">Aggiungi al carrello</button>
-				</form>
 			</div>
-			<%
-			}
-			}
-			%>
+			<% } }%>
 
-			<%
-			if (cliente != null && "admin".equals(cliente.getRuolo())) {
-			%>
+			<% if (cliente != null && "admin".equals(cliente.getRuolo())) { %>
 			<div class="grid-item prodotto">
 				<h3>
 					Aggiungi un nuovo prodotto
-					<%=categoriaId%></h3>
-				<form action="../AggiungiProdottoCatalogo" method="post"">
+					<%= categoriaId %></h3>
+				<form action="../AggiungiProdottoCatalogo" method="post" class="edit-form">
 
 					<label for="nome">Nome prodotto:</label> <input type="text"
 						id="nome" name="nome" required><br> <label
@@ -122,30 +118,26 @@ ArrayList<Prodotto> listaProdotti = prodottoDao.selectByIdCategoria("6");
 						min="1" required><br> <label for="immagine">Immagine
 						prodotto:</label> <input type="text" id="immagine" name="immagine"
 						required><br> <input type="hidden" name="categoria"
-						value="<%=categoriaId%>">
+						value="<%= categoriaId %>">
 
 					<button type="submit">Aggiungi prodotto</button>
 				</form>
 			</div>
-			<%
-			}
-			%>
+			<% }	%>
 		
 	</main>
 	<%
-	String toastMessage = (String) session.getAttribute("toastMessage");
-	if (toastMessage != null) {
-		session.removeAttribute("toastMessage");
-	%>
+
+String toastMessage = (String) session.getAttribute("toastMessage");
+if (toastMessage != null) { 
+    session.removeAttribute("toastMessage");
+%>
 	<script>
     window.onload = function() {
-        showToast("<%=toastMessage%>
-		");
-		};
-	</script>
-	<%
-	}
-	%>
+        showToast("<%= toastMessage %>");
+    };
+</script>
+	<% } %>
 	<%@ include file="/partials/footer.jsp"%>
 </body>
 

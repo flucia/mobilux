@@ -16,7 +16,7 @@ ProdottoDAO prodottoDao = new ProdottoDAO();
 ArrayList<Prodotto> listaProdotti = prodottoDao.selectByIdCategoria("4");
 %>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ufficio</title>
+<title>Cucina</title>
 </head>
 <body>
 	<%@ include file="/partials/header.jsp"%>
@@ -54,39 +54,45 @@ ArrayList<Prodotto> listaProdotti = prodottoDao.selectByIdCategoria("4");
 			         for (Prodotto prodotto : listaProdotti) {
 			%>
 
-			<div class="grid-item prodotto">
-				<form action="../ModificaProdotto" method="post">
+			<div class="grid-item prodotto gap-y-1">
+				<form action="../ModificaProdotto" method="post" class="edit-form">
 					<img
 						src="<%=request.getContextPath()%>/images/<%=prodotto.getImmagine()%>"
-						alt="img-prodotto" class="prodotto-img"> <input
+						alt="img-prodotto" class="prodotto-img align-items-center"> 
+					<input
 						type="hidden" name="idProdotto"
-						value=<%=prodotto.getIdProdotto()%>> <input
-						value="<%=prodotto.getNome()%>" name="nome" id="nome"> <input
+						value=<%=prodotto.getIdProdotto()%>> 
+					<label for="Nome">Nome:</label>
+					<input
+						value="<%=prodotto.getNome()%>" name="nome" id="nome"> 
+					<label for="Descrizione">Descrizione:</label>
+					<input
 						value="<%=prodotto.getDescrizione()%>" name="descrizione"
-						id="descrizione"> <input value="<%=prodotto.getPrezzo()%>"
+						id="descrizione"> 
+					<label for="prezzo">Prezzo:</label>
+					<span class="flex gap-x-1">
+					<input class="w-full" value="<%=prodotto.getPrezzo()%>"
 						name="prezzo" id="prezzo">€
-					<button type="submit">Modifica</button>
+					</span>
+					<button type="submit">Salva</button>
 				</form>
 
-				<form action="../ModificaQuantitaDisponibile" method="post">
-					<input type="number" id="quantitaDisponibile"
+				<form action="../ModificaQuantitaDisponibile" method="post" class="edit-form">
+				<p>
+					Disponibili:
+					<%=prodotto.getQuantitaDisponibile()%></p>
+					<label for="quantity">Quantità:</label>
+					<input class="" type="number" id="quantitaDisponibile"
 						name="quantitaDisponibile" min="1" value="1" required> <input
 						type="hidden" name="idProdotto"
 						value="<%=prodotto.getIdProdotto()%>">
+						<%System.out.println(prodotto.getIdProdotto()); %>
 					<button type="submit">Modifica quantità prodotto</button>
 				</form>
-
 				<form action="../EliminaProdottoCatalogo" method="post">
 					<input type="hidden" name="idProdotto"
 						value="<%=prodotto.getIdProdotto()%>">
 					<button type="submit">Elimina prodotto</button>
-				</form>
-				<form action="../AggiungiCarrello" method="post">
-					<label for="quantity">Quantità:</label> <input type="number"
-						id="quantita" name="quantita" value="1" required> <input
-						type="hidden" name="idProdotto"
-						value=<%=prodotto.getIdProdotto()%>>
-					<button type="submit">Aggiungi al carrello</button>
 				</form>
 			</div>
 			<% } }%>
@@ -96,7 +102,7 @@ ArrayList<Prodotto> listaProdotti = prodottoDao.selectByIdCategoria("4");
 				<h3>
 					Aggiungi un nuovo prodotto
 					<%= categoriaId %></h3>
-				<form action="../AggiungiProdottoCatalogo" method="post"">
+				<form action="../AggiungiProdottoCatalogo" method="post" class="edit-form">
 
 					<label for="nome">Nome prodotto:</label> <input type="text"
 						id="nome" name="nome" required><br> <label

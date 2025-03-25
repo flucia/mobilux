@@ -28,6 +28,14 @@ public class AggiungiCarrello extends HttpServlet {
 		String idProdotto = request.getParameter("idProdotto");
 		String quantitaString = request.getParameter("quantita");
 		String quantitaDisponibileStr = request.getParameter("quantitaDisponibile");
+		ProdottoDAO prodottoDAO = new ProdottoDAO();
+		double prezzoProdotto = 0;
+		try {
+			 prezzoProdotto = prodottoDAO.getPrezzoProdotto(idProdotto);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 	
 		int quantitaDisponibile = Integer.parseInt(quantitaDisponibileStr);
 		int quantita = Integer.parseInt(quantitaString);
@@ -42,6 +50,7 @@ public class AggiungiCarrello extends HttpServlet {
 		for (Carrello item : carrelloSessione) {
 			if (item.getIdProdotto().equals(idProdotto)) {
 				item.setQuantita(item.getQuantita() + quantita); 
+				item.setPrezzo(prezzoProdotto);
 				prodottoEsistente = true;
 				break;
 			}
@@ -51,13 +60,14 @@ public class AggiungiCarrello extends HttpServlet {
 			Carrello nuovoItem = new Carrello();
 			nuovoItem.setIdProdotto(idProdotto);
 			nuovoItem.setQuantita(quantita);
+			nuovoItem.setPrezzo(prezzoProdotto);
 			carrelloSessione.add(nuovoItem);
 		}
 		
 		session.setAttribute("carrello", carrelloSessione);
 		
 		session.setAttribute("toastMessage", "Articolo aggiunto al carrello!");
-		response.sendRedirect(request.getContextPath() + "/pages/cucina.jsp");
+		response.sendRedirect(request.getContextPath() + "/pages/carrello.jsp");
 	}
 
 	@Override

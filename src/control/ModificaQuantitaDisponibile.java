@@ -37,8 +37,8 @@ public class ModificaQuantitaDisponibile extends HttpServlet{
 				e.printStackTrace();
 			}
 
-	        // Redirige alla pagina del prodotto o a una pagina di successo
-	        response.sendRedirect(request.getContextPath() + "/pages/cucina.jsp");
+	        
+	        response.sendRedirect(request.getContextPath());
 	    }	
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

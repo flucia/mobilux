@@ -186,5 +186,19 @@ public class ProdottoDAO {
 		System.out.println("ID prodotto richiesto: " + idProdotto);
 		return prodotto;
 	}
+	public double getPrezzoProdotto(String idProdotto) throws SQLException {
+	    String query = "SELECT prezzo FROM Prodotto WHERE idProdotto = ?";
+	    double prezzo = 0.0;
+
+	    try (PreparedStatement ps = connection.prepareStatement(query)) {
+	        ps.setString(1, idProdotto);
+	        ResultSet rs = ps.executeQuery();
+	        if (rs.next()) {
+	            prezzo = rs.getDouble("prezzo");
+	        }
+	    }
+	    return prezzo;
+	}
+
 
 }

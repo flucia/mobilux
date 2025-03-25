@@ -38,30 +38,42 @@ public class Checkout extends HttpServlet {
 		String stringData = request.getParameter("dataOrdine");
 
 		LocalDate dataOrdine = null;
-		boolean ordineInserito = false;
+		int idOrdine = 0;
 
 		dataOrdine = LocalDate.now();
 
 		if(cliente != null && carrelli != null && !carrelli.isEmpty()) {
-
+			
 			ordine = new Ordine(cliente.getCodiceFiscale(),dataOrdine,prezzoTotale);
 
 			try {
+				idOrdine = ordineDAO.insertOrdine(ordine);
+				System.out.println(ordine);
 				
-				ordineInserito = ordineDAO.insertOrdine(ordine);
-				
-				if(ordineInserito) {
+				if(idOrdine > 0) {
 					for (Carrello item : carrelli) {
-                        String idProdotto = item.getIdProdotto();
-                        int quantitaAcquistata = item.getQuantita();
-                        int quantitaDisponibile = prodottoDao.getQuantitaDisponibile(String.valueOf(idProdotto));
-                        if (quantitaAcquistata > quantitaDisponibile) {
-                            request.setAttribute("errorMessage", "Quantità insufficiente per il prodotto: ");
-                            request.getRequestDispatcher("/pages/carrello.jsp").forward(request, response);
-                            return;
-                        }
-                        prodottoDao.riduciQuantitaDisponibile(idProdotto, quantitaAcquistata);
-                    }
+					    String idProdotto = item.getIdProdotto();
+					    int quantitaAcquistata = item.getQuantita();
+					    int quantitaDisponibile = prodottoDao.getQuantitaDisponibile(idProdotto);
+
+					    if (quantitaAcquistata > quantitaDisponibile) {
+					        request.setAttribute("errorMessage", "Quantità insufficiente per il prodotto: ");
+					        request.getRequestDispatcher("/pages/carrello.jsp").forward(request, response);
+					        return;
+					    }
+
+					    prodottoDao.riduciQuantitaDisponibile(idProdotto, quantitaAcquistata);
+					    
+					 
+					    boolean prodottoEsistente = ordineDAO.prodottoEsistente(idOrdine, idProdotto);
+					    if (prodottoEsistente) {
+					       
+					        ordineDAO.aggiornaQuantitaProdotto(idOrdine, idProdotto, quantitaAcquistata);
+					    } else {
+					    	double prezzoProdotto = prodottoDao.getPrezzoProdotto(idProdotto);
+					        ordineDAO.insertDettaglioOrdine(idOrdine, idProdotto, quantitaAcquistata, prezzoProdotto,prezzoTotale);
+					    }
+					}
 					
 					request.getSession().removeAttribute("totaleCarrello");
 					request.getSession().removeAttribute("carrello");
