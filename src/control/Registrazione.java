@@ -27,15 +27,6 @@ public class Registrazione extends HttpServlet {
 		String indirizzo = request.getParameter("indirizzo");
 		String cellulare = request.getParameter("cellulare");
 
-		System.out.println("cf: " + cf);
-		System.out.println("nome: " + nome);
-		System.out.println("cognome: " + cognome);
-		System.out.println("username: " + username);
-		System.out.println("email: " + email);
-		System.out.println("ruolo: " + ruolo);
-		System.out.println("password: " + password);
-		System.out.println("indirizzo: " + indirizzo);
-		System.out.println("cellulare: " + cellulare);
 		Cliente cliente = new Cliente(cf, nome, cognome, username, email, password, ruolo, indirizzo, cellulare);
 
 		ClienteDAO clienteDAO = new ClienteDAO();

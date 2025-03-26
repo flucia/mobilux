@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const indirizzo = document.getElementById("indirizzo").value;
         const cellulare = document.getElementById("cellulare").value;
 
-        // Esegui le validazioni
+       
         if (!validaEmail(email)) {
             alert("Email non valida");
             return;

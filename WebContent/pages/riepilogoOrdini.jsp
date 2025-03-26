@@ -10,20 +10,21 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-    <%@ include file="/partials/head.jsp"%>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <title>Riepilogo ordini</title>
-    <style>
-        .hidden {
-            display: none;
-        }
-    </style>
+<%@ include file="/partials/head.jsp"%>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<title>Riepilogo ordini</title>
+<style>
+.hidden {
+	display: none;
+}
+</style>
 </head>
 <body>
 
-    <%@ include file="/partials/header.jsp"%>
-    
-    <%
+	<%@ include file="/partials/header.jsp"%>
+
+	<%
         Cliente user = (Cliente) request.getSession().getAttribute("cliente");
         OrdineDAO ordineDao = new OrdineDAO();
         ClienteDAO clienteDao = new ClienteDAO();
@@ -43,47 +44,47 @@
         }
     %>
 
-    <main>
-        <div class="order" id="listaOrdini">
-            <%
+	<main>
+		<div class="order" id="listaOrdini">
+			<%
             if ("admin".equals(user.getRuolo())) {
             %>
-            <form onsubmit="cercaOrdini(event)">
-                <input class="input-search mobile-width" type="text" id="inputCerca"
-                    placeholder="cerca">
-                <button class="button-order" type="submit">Cerca</button>
-            </form>
-            <div id="risultatoRicerca"></div>
-            <%
+			<form onsubmit="cercaOrdini(event)">
+				<input class="input-search mobile-width" type="text" id="inputCerca"
+					placeholder="cerca">
+				<button class="button-order" type="submit">Cerca</button>
+			</form>
+			<div id="risultatoRicerca"></div>
+			<%
             }
             %>
 
-            <%
+			<%
             if (listaOrdini != null && !listaOrdini.isEmpty()) {
                 if ("admin".equals(user.getRuolo())) {
             %>
-            <table id="tuttiOrdiniTable">
-                <thead>
-                    <tr>
-                        <th>Nome Cliente</th>
-                        <th>Cognome Cliente</th>
-                        <th>Data Ordine</th>
-                        <th>Prodotti acquistati</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <%
+			<table id="tuttiOrdiniTable">
+				<thead>
+					<tr>
+						<th>Nome Cliente</th>
+						<th>Cognome Cliente</th>
+						<th>Data Ordine</th>
+						<th>Prodotti acquistati</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%
                    
                     for (Ordine o : listaOrdini) {
                         Cliente cliente1 = clienteDao.selectById(o.getIdUtente());
                         ArrayList<DettaglioOrdine> dettagliOrdine = dettaglioOrdineDAO.selectDettagliOrdineById(o.getIdOrdine());
                     %>
-                    <tr>
-                        <td><%=cliente1.getNome()%></td>
-                        <td><%=cliente1.getCognome()%></td>
-                        <td><%=o.getDataOrdine()%></td>
-                        <td>
-                            <%
+					<tr>
+						<td><%=cliente1.getNome()%></td>
+						<td><%=cliente1.getCognome()%></td>
+						<td><%=o.getDataOrdine()%></td>
+						<td>
+							<%
                         
                             for (DettaglioOrdine dettaglio : dettagliOrdine) {
                                 out.println("Prodotto: " + dettaglio.getNome() + "<br>");
@@ -93,35 +94,35 @@
                                 out.println("Prezzo totale: " + dettaglio.getPrezzoTotale() + "<br>");
                             }
                             %>
-                        </td>
-                    </tr>
-                    <%
+						</td>
+					</tr>
+					<%
                     }
                     %>
-                </tbody>
-            </table>
-            <%
+				</tbody>
+			</table>
+			<%
             } else {
             %>
-            <table id="tuttiOrdiniTable">
-                <thead>
-                    <tr>
-                        <th>Data Ordine</th>
-                        <th>Prodotti acquistati</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <%
+			<table id="tuttiOrdiniTable">
+				<thead>
+					<tr>
+						<th>Data Ordine</th>
+						<th>Prodotti acquistati</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%
                    
                     for (Ordine o : listaOrdini) {
                         Cliente cliente1 = clienteDao.selectById(o.getIdUtente());
                         ArrayList<DettaglioOrdine> dettagliOrdine = dettaglioOrdineDAO.selectDettagliOrdineById(o.getIdOrdine());
                     %>
-                    <tr>
-                        <td><%=o.getDataOrdine()%></td>
-                        <td>
-                            <%
-                            // Mostra i dettagli degli ordini
+					<tr>
+						<td><%=o.getDataOrdine()%></td>
+						<td>
+							<%
+                            
                             for (DettaglioOrdine dettaglio : dettagliOrdine) {
                                 out.println("Prodotto: " + dettaglio.getNome() + "<br>");
                                 out.println("Descrizione: " + dettaglio.getDescrizione() + "<br>");
@@ -130,18 +131,18 @@
                                 out.println("Prezzo totale: " + dettaglio.getPrezzoTotale() + "<br>");
                             }
                             %>
-                        </td>
-                    </tr>
-                    <%
+						</td>
+					</tr>
+					<%
                     }
                     %>
-                </tbody>
-            </table>
-            <%
+				</tbody>
+			</table>
+			<%
             }
             }
             %>
-        </div>
-    </main>
+		</div>
+	</main>
 </body>
 </html>

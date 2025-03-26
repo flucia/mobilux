@@ -18,9 +18,11 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-		var absolutePath = "<%=request.getContextPath()%>";
-	</script>
+		var absolutePath = "<%=request.getContextPath()%> 
+	" ;
+</script>
 <script src="<%=request.getContextPath()%>/scripts/validazione.js"></script>
-<script src="<%=request.getContextPath()%>/scripts/ricerca.js"></script>
 <script src="<%=request.getContextPath()%>/scripts/riepilogoOrdini.js"></script>
+<script src="<%=request.getContextPath()%>/scripts/ricerca.js"></script>
+
 
