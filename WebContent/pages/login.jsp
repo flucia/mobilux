@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page import="java.net.URLDecoder"%>
+<%@ page import="javax.servlet.http.Cookie"%>
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -27,11 +30,27 @@
 						href="${pageContext.request.contextPath}/pages/registrazione.jsp">Registrati</a>
 				</div>
 
-				<% String errorMessage = (String) request.getAttribute("errorMessage");
+				<%
+				String errorMessage = null;
+				Cookie[] cookies = request.getCookies();
+				if (cookies != null) {
+					for (Cookie cookie : cookies) {
+						if ("errorMessage".equals(cookie.getName())) {
+					errorMessage = URLDecoder.decode(cookie.getValue(), "UTF-8");
+
+					Cookie cookieToDelete = new Cookie("errorMessage", "");
+					cookieToDelete.setMaxAge(0);
+					response.addCookie(cookieToDelete);
+					break;
+						}
+					}
+				}
+				if (errorMessage != null) {
 				%>
-				<% if (errorMessage != null) { %>
-				<p style="color: red;"><%= errorMessage %></p>
-				<% } %>
+				<div class="errore"><%=errorMessage%></div>
+				<%
+}
+%>
 
 				<div id="errorMessagesU" class="errore"></div>
 				<div id="errorMessagesP" class="errore"></div>

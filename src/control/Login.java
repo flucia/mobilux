@@ -1,12 +1,14 @@
 package control;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -45,9 +47,10 @@ public class Login extends HttpServlet {
 				System.out.println(cliente.getRuolo());	
 				response.sendRedirect(request.getContextPath() + "/pages/index.jsp");
 			} else {
-				request.setAttribute("errorMessage","Username o password errati.");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("./pages/login.jsp");
-				dispatcher.forward(request,response);
+				Cookie errorCookie = new Cookie("errorMessage", URLEncoder.encode("Username o password errati.", "UTF-8"));
+				errorCookie.setMaxAge(5); 
+				response.addCookie(errorCookie);
+				response.sendRedirect(request.getContextPath() + "/pages/login.jsp");
 				
 				
 			}
