@@ -1,8 +1,9 @@
 package model.bean;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class OrdineCliente {
+public class OrdineCliente implements Serializable {
 	    private int idOrdine;
 	    private LocalDate dataOrdine;
 	    private double prezzoTotale;

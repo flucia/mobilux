@@ -1,9 +1,10 @@
 package model.bean;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Ordine {
+public class Ordine implements Serializable {
 	private int idOrdine;
 	private String idUtente;
 	private LocalDate dataOrdine;

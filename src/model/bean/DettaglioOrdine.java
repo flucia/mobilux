@@ -1,6 +1,8 @@
 package model.bean;
 
-public class DettaglioOrdine {
+import java.io.Serializable;
+
+public class DettaglioOrdine implements Serializable{
 	private String idDettaglioOrdine;
 	private int idOrdine;
 	private String idProdotto;

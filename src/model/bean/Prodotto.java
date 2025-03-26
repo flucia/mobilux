@@ -1,6 +1,8 @@
 package model.bean;
 
-public class Prodotto {
+import java.io.Serializable;
+
+public class Prodotto implements Serializable {
 	private String idProdotto;
 	private String nome;
 	private int quantità;
